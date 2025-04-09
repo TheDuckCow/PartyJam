@@ -21,5 +21,11 @@ theme_override_font_sizes/font_size = 35
 text = "Select a mini-game:"
 horizontal_alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="LevelList"]
+[node name="ScrollContainer" type="ScrollContainer" parent="LevelList"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="LevelList/ScrollContainer"]
+layout_mode = 2
+size_flags_vertical = 3

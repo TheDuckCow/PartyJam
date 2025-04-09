@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://xxtcerhpfcax"]
+
+[ext_resource type="PackedScene" uid="uid://brtcia5teyo2p" path="res://player.tscn" id="1_bndqo"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_bndqo")]
+modulate = Color(0.666667, 0.631373, 0, 1)
+position = Vector2(289, 216)

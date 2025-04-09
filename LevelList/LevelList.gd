@@ -4,7 +4,7 @@ const LEVEL_BTN = preload("res://LevelList/LevelButton.tscn")
 
 @export_dir var dirPath
 
-@onready var grid = $LevelList/GridContainer
+@onready var grid = $LevelList/ScrollContainer/GridContainer
 
 func _ready() -> void:
 	get_levels(dirPath)
