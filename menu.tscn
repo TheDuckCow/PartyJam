@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://fmbcc2bisml0"]
+
+[ext_resource type="PackedScene" uid="uid://brtcia5teyo2p" path="res://player.tscn" id="2_mae5d"]
+[ext_resource type="Script" uid="uid://dbq0w7wfbqbur" path="res://LevelList/LevelList.gd" id="2_ouk20"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("2_ouk20")
+dirPath = "res://Levels"
+
+[node name="Player" parent="." instance=ExtResource("2_mae5d")]
+position = Vector2(161, 107)
+
+[node name="LevelList" type="VBoxContainer" parent="."]
+offset_left = 250.0
+offset_right = 1153.0
+offset_bottom = 648.0
+
+[node name="List Label" type="Label" parent="LevelList"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Select a mini-game:"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="LevelList"]
+layout_mode = 2
