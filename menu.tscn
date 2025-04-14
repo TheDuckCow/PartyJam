@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://fmbcc2bisml0"]
+[gd_scene load_steps=10 format=3 uid="uid://fmbcc2bisml0"]
 
+[ext_resource type="Script" uid="uid://bn1loubjfdi7x" path="res://player_1_wins.gd" id="2_kk3ma"]
 [ext_resource type="PackedScene" uid="uid://d0arsplj7ije" path="res://Player/player.tscn" id="2_mae5d"]
 [ext_resource type="Script" uid="uid://dbq0w7wfbqbur" path="res://LevelList/LevelList.gd" id="2_ouk20"]
 [ext_resource type="Texture2D" uid="uid://danovm8dh18b0" path="res://Player/icon.svg" id="3_mae5d"]
+[ext_resource type="Script" uid="uid://we551eun6gsv" path="res://player_2_wins.gd" id="3_nrnbx"]
 [ext_resource type="Texture2D" uid="uid://jte6orcmf6ic" path="res://Player/icon2.png" id="4_4hy44"]
 [ext_resource type="Texture2D" uid="uid://xh81iii5pisp" path="res://Player/TestIcon.png" id="4_ytr4m"]
 [ext_resource type="PackedScene" uid="uid://brtcia5teyo2p" path="res://Player/player2.tscn" id="5_l48gv"]
@@ -11,6 +13,22 @@
 [node name="Node2D" type="Node2D"]
 script = ExtResource("2_ouk20")
 dirPath = "res://Levels"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 195.0
+offset_bottom = 68.0
+
+[node name="Player1Wins" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Player 1 Wins:"
+script = ExtResource("2_kk3ma")
+
+[node name="Player2Wins" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Player 2 Wins:"
+script = ExtResource("3_nrnbx")
 
 [node name="LevelList" type="VBoxContainer" parent="."]
 offset_left = 168.0
@@ -35,7 +53,7 @@ size_flags_vertical = 3
 columns = 4
 
 [node name="Player" parent="." instance=ExtResource("2_mae5d")]
-position = Vector2(100, 136)
+position = Vector2(101, 139)
 ogTexture = ExtResource("3_mae5d")
 otherTexture = ExtResource("4_ytr4m")
 
@@ -53,4 +71,6 @@ text = "RANDOM!"
 script = ExtResource("7_ecwwl")
 dirPath = "res://Levels"
 
+[connection signal="mouse_entered" from="Random" to="Random" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Random" to="Random" method="_on_mouse_exited"]
 [connection signal="pressed" from="Random" to="Random" method="_on_pressed"]
