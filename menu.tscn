@@ -1,14 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://fmbcc2bisml0"]
+[gd_scene load_steps=7 format=3 uid="uid://fmbcc2bisml0"]
 
-[ext_resource type="PackedScene" uid="uid://brtcia5teyo2p" path="res://player.tscn" id="2_mae5d"]
+[ext_resource type="PackedScene" uid="uid://d0arsplj7ije" path="res://player.tscn" id="2_mae5d"]
 [ext_resource type="Script" uid="uid://dbq0w7wfbqbur" path="res://LevelList/LevelList.gd" id="2_ouk20"]
+[ext_resource type="Texture2D" uid="uid://danovm8dh18b0" path="res://icon.svg" id="3_mae5d"]
+[ext_resource type="Texture2D" uid="uid://jte6orcmf6ic" path="res://icon2.png" id="4_4hy44"]
+[ext_resource type="Texture2D" uid="uid://xh81iii5pisp" path="res://TestIcon.png" id="4_ytr4m"]
+[ext_resource type="PackedScene" uid="uid://brtcia5teyo2p" path="res://player2.tscn" id="5_l48gv"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("2_ouk20")
 dirPath = "res://Levels"
-
-[node name="Player" parent="." instance=ExtResource("2_mae5d")]
-position = Vector2(96, 103)
 
 [node name="LevelList" type="VBoxContainer" parent="."]
 offset_left = 168.0
@@ -31,3 +32,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 4
+
+[node name="Player" parent="." instance=ExtResource("2_mae5d")]
+position = Vector2(100, 136)
+ogTexture = ExtResource("3_mae5d")
+otherTexture = ExtResource("4_ytr4m")
+
+[node name="Player2" parent="." instance=ExtResource("5_l48gv")]
+position = Vector2(98, 408)
+ogTexture = ExtResource("4_4hy44")
+otherTexture = ExtResource("4_ytr4m")
