@@ -18,7 +18,6 @@ func get_levels(path) -> void:
 			if dir.current_is_dir():
 				print("Found directory: " + file_name)
 			else:
-				print("Found file: " + file_name)
 				create_level_btn("%s/%s" % [dir.get_current_dir(), file_name], file_name)
 			file_name = dir.get_next()
 	else:

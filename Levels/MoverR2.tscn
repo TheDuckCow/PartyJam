@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnvp8u6r562hv"]
+[gd_scene load_steps=4 format=3 uid="uid://cnvp8u6r562hv"]
 
-[ext_resource type="PackedScene" uid="uid://brtcia5teyo2p" path="res://player2.tscn" id="1_ylkkt"]
+[ext_resource type="PackedScene" uid="uid://brtcia5teyo2p" path="res://Player/player2.tscn" id="1_ylkkt"]
+[ext_resource type="Texture2D" uid="uid://xh81iii5pisp" path="res://Player/TestIcon.png" id="2_vvy5i"]
+[ext_resource type="Texture2D" uid="uid://danovm8dh18b0" path="res://Player/icon.svg" id="3_cnnfn"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_ylkkt")]
 modulate = Color(0.951695, 0.0278661, 0, 1)
 position = Vector2(289, 216)
+ogTexture = ExtResource("2_vvy5i")
+otherTexture = ExtResource("3_cnnfn")
