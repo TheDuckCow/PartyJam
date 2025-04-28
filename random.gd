@@ -23,18 +23,24 @@ func _ready() -> void:
 		var file_name = dir.get_next()
 		while file_name != "":
 			if dir.current_is_dir():
-				print("Found directory: " + file_name)
+				pass
 			else:
 				addGame(file_name)
 			file_name = dir.get_next()
 	else:
 		print("An error occured when trying to open path")
+		
+	randomize()
 
 func addGame(filepath: String):
 	games.append(filepath)
 
 func random():
 	var randomGameIndex = randi() % games.size()
+	if Global.lastGameIndex == randomGameIndex:
+		print("rerolled: ", randomGameIndex)
+		randomGameIndex = randi() % games.size()
+		
 	print("Num of games: ", games.size(),  "  Random number: ", randomGameIndex, " Game: ", dirPath + "/" + games[randomGameIndex])
 	get_tree().change_scene_to_file(dirPath + "/" + games[randomGameIndex])
 
