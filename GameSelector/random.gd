@@ -29,7 +29,8 @@ func _ready() -> void:
 			file_name = dir.get_next()
 	else:
 		print("An error occured when trying to open path")
-		
+	if games.size() == 0:
+		visible = false
 	randomize()
 
 func addGame(filepath: String):
@@ -37,6 +38,7 @@ func addGame(filepath: String):
 
 func random():
 	if games.size() == 0:
+		
 		printerr("No games found to load! ", games.size())
 		return
 	var randomGameIndex = randi() % games.size()
