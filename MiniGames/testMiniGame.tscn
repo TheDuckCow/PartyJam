@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://bgxlijln835cv"]
+
+[ext_resource type="Script" uid="uid://c512q2m33rd6s" path="res://MiniGames/testMiniGame/test_mini_game.gd" id="1_exqvy"]
+[ext_resource type="PackedScene" uid="uid://brtcia5teyo2p" path="res://MiniGames/testMiniGame/Player/player2.tscn" id="1_pbytr"]
+[ext_resource type="Texture2D" uid="uid://jte6orcmf6ic" path="res://MiniGames/testMiniGame/Player/icon2.png" id="2_8oa5a"]
+[ext_resource type="PackedScene" uid="uid://d0arsplj7ije" path="res://MiniGames/testMiniGame/Player/player.tscn" id="2_b0y26"]
+[ext_resource type="Texture2D" uid="uid://xh81iii5pisp" path="res://MiniGames/testMiniGame/Player/TestIcon.png" id="3_8vxln"]
+[ext_resource type="Texture2D" uid="uid://danovm8dh18b0" path="res://MiniGames/testMiniGame/Player/icon.svg" id="5_exqvy"]
+[ext_resource type="PackedScene" uid="uid://bkix4pi83oj1i" path="res://MiniGames/testMiniGame/title_screen.tscn" id="6_8vxln"]
+[ext_resource type="PackedScene" uid="uid://scoslup3w2gq" path="res://MiniGames/testMiniGame/victory_screen.tscn" id="8_4jt3p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exqvy"]
+size = Vector2(82, 649)
+
+[node name="MiniGame" type="Node2D"]
+script = ExtResource("1_exqvy")
+
+[node name="EndZone" type="Area2D" parent="."]
+collision_layer = 3
+
+[node name="ColorRect" type="ColorRect" parent="EndZone"]
+offset_left = 1071.0
+offset_top = -1.0
+offset_right = 1153.0
+offset_bottom = 649.0
+color = Color(0, 1, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndZone"]
+position = Vector2(1111, 325.5)
+shape = SubResource("RectangleShape2D_exqvy")
+
+[node name="Player" parent="." instance=ExtResource("1_pbytr")]
+position = Vector2(128, 172)
+collision_mask = 3
+ogTexture = ExtResource("2_8oa5a")
+otherTexture = ExtResource("3_8vxln")
+
+[node name="Player2" parent="." instance=ExtResource("2_b0y26")]
+position = Vector2(126, 404)
+collision_mask = 3
+ogTexture = ExtResource("5_exqvy")
+otherTexture = ExtResource("3_8vxln")
+
+[node name="TitleScreen" parent="." instance=ExtResource("6_8vxln")]
+visible = false
+
+[node name="VictoryScreen" parent="." instance=ExtResource("8_4jt3p")]
+visible = false
+anchors_preset = 15
+offset_right = 1150.0
+offset_bottom = 647.0
+color = Color(0.756058, 0.000554659, 0.77891, 1)
+
+[connection signal="body_entered" from="EndZone" to="." method="_on_end_zone_body_entered"]

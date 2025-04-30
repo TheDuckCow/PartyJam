@@ -1,6 +1,6 @@
 extends Node2D
 
-const LEVEL_BTN = preload("res://LevelList/LevelButton.tscn")
+const LEVEL_BTN = preload("res://GameSelector/LevelButton.tscn")
 
 @export_dir var dirPath
 
@@ -20,8 +20,8 @@ func get_levels(path) -> void:
 			else:
 				create_level_btn("%s/%s" % [dir.get_current_dir(), file_name], file_name)
 			file_name = dir.get_next()
-	else:
-		print("An error occured when trying to open path")
+	elif dir == null:
+		print("An error occured when trying to open path", path)
 
 func create_level_btn(lvlPath: String, lvlName: String) -> void:
 	var btn = LEVEL_BTN.instantiate()

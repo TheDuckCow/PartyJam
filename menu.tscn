@@ -1,19 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://fmbcc2bisml0"]
+[gd_scene load_steps=10 format=3 uid="uid://fmbcc2bisml0"]
 
-[ext_resource type="Script" uid="uid://bn1loubjfdi7x" path="res://player_1_wins.gd" id="2_kk3ma"]
-[ext_resource type="PackedScene" uid="uid://d0arsplj7ije" path="res://Player/player.tscn" id="2_mae5d"]
-[ext_resource type="Script" uid="uid://dbq0w7wfbqbur" path="res://LevelList/LevelList.gd" id="2_ouk20"]
-[ext_resource type="Texture2D" uid="uid://danovm8dh18b0" path="res://Player/icon.svg" id="3_mae5d"]
-[ext_resource type="Script" uid="uid://we551eun6gsv" path="res://player_2_wins.gd" id="3_nrnbx"]
-[ext_resource type="Texture2D" uid="uid://jte6orcmf6ic" path="res://Player/icon2.png" id="4_4hy44"]
-[ext_resource type="Texture2D" uid="uid://xh81iii5pisp" path="res://Player/TestIcon.png" id="4_ytr4m"]
-[ext_resource type="PackedScene" uid="uid://brtcia5teyo2p" path="res://Player/player2.tscn" id="5_l48gv"]
-[ext_resource type="Script" uid="uid://b7hvw66p1t6i" path="res://random.gd" id="7_ecwwl"]
-[ext_resource type="Texture2D" uid="uid://cvpjcai5hv0xs" path="res://Assets/samplegamepic.png" id="10_iqepy"]
+[ext_resource type="Script" uid="uid://bn1loubjfdi7x" path="res://GameSelector/player_1_wins.gd" id="2_kk3ma"]
+[ext_resource type="PackedScene" uid="uid://d0arsplj7ije" path="res://MiniGames/testMiniGame/Player/player.tscn" id="2_mae5d"]
+[ext_resource type="Script" uid="uid://dbq0w7wfbqbur" path="res://GameSelector/GameSelector.gd" id="2_ouk20"]
+[ext_resource type="Texture2D" uid="uid://danovm8dh18b0" path="res://MiniGames/testMiniGame/Player/icon.svg" id="3_mae5d"]
+[ext_resource type="Script" uid="uid://we551eun6gsv" path="res://GameSelector/player_2_wins.gd" id="3_nrnbx"]
+[ext_resource type="Texture2D" uid="uid://jte6orcmf6ic" path="res://MiniGames/testMiniGame/Player/icon2.png" id="4_4hy44"]
+[ext_resource type="Texture2D" uid="uid://xh81iii5pisp" path="res://MiniGames/testMiniGame/Player/TestIcon.png" id="4_ytr4m"]
+[ext_resource type="PackedScene" uid="uid://brtcia5teyo2p" path="res://MiniGames/testMiniGame/Player/player2.tscn" id="5_l48gv"]
+[ext_resource type="Script" uid="uid://b7hvw66p1t6i" path="res://GameSelector/random.gd" id="7_ecwwl"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("2_ouk20")
-dirPath = "res://Levels"
+dirPath = "res://MiniGames"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 offset_right = 195.0
@@ -71,62 +70,6 @@ offset_bottom = 579.0
 text = "RANDOM!"
 script = ExtResource("7_ecwwl")
 dirPath = "res://Levels"
-
-[node name="TitleScreen" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 1152.0
-offset_bottom = 648.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 1, 1)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen"]
-layout_mode = 0
-offset_right = 1132.0
-offset_bottom = 171.0
-
-[node name="GameNameText" type="RichTextLabel" parent="TitleScreen/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 50
-bbcode_enabled = true
-text = "NAME OF YOUR GAME HERE!"
-fit_content = true
-horizontal_alignment = 1
-
-[node name="CreditsText" type="RichTextLabel" parent="TitleScreen/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 50
-bbcode_enabled = true
-text = "Credits and names here!"
-fit_content = true
-horizontal_alignment = 1
-
-[node name="GameInstructionsText" type="RichTextLabel" parent="TitleScreen"]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 136.0
-offset_right = 563.0
-offset_bottom = 643.0
-theme_override_font_sizes/normal_font_size = 40
-bbcode_enabled = true
-text = "Your game instruction text here!
-Player One Controls:
-WASD + Alt + Space keys
-Player Two Controls:
-Arrow + Enter + Ctrl keys
-
-Press Alt or Ctrl to start!"
-fit_content = true
-
-[node name="TextureRect" type="TextureRect" parent="TitleScreen"]
-layout_mode = 0
-offset_left = 634.0
-offset_top = 131.0
-offset_right = 1134.0
-offset_bottom = 631.0
-texture = ExtResource("10_iqepy")
 
 [connection signal="mouse_entered" from="Random" to="Random" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Random" to="Random" method="_on_mouse_exited"]

@@ -36,6 +36,9 @@ func addGame(filepath: String):
 	games.append(filepath)
 
 func random():
+	if games.size() == 0:
+		printerr("No games found to load! ", games.size())
+		return
 	var randomGameIndex = randi() % games.size()
 	if Global.lastGameIndex == randomGameIndex:
 		print("rerolled: ", randomGameIndex)

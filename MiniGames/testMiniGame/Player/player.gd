@@ -10,10 +10,10 @@ func _ready() -> void:
 	$Icon.texture = ogTexture
 
 func get_input():
-	var input_direction = Input.get_vector("p2_left", "p2_right", "p2_up", "p2_down")
+	var input_direction = Input.get_vector("p1_left", "p1_right", "p1_up", "p1_down")
 	velocity = input_direction * speed
 	
-	if Input.is_action_just_pressed("p2_action1"):
+	if Input.is_action_just_pressed("p1_action1"):
 		if not altSprite:
 			$Icon.texture = otherTexture
 			altSprite = true
@@ -21,14 +21,14 @@ func get_input():
 			$Icon.texture = ogTexture
 			altSprite = false
 		
-	if Input.is_action_just_pressed("p2_action2"):
+	if Input.is_action_just_pressed("p1_action2"):
 		$Icon.flip_v = !$Icon.flip_v
 	
 	if Input.is_action_just_pressed("esc"):
 		get_tree().change_scene_to_file("res://menu.tscn")
 		changingScene = true
 	
-func _physics_process(_delta):
+func playerInput():
 	get_input()
 	
 	if !changingScene:

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://danovm8dh18b0"
-path="res://.godot/imported/icon.svg-22ca46ad79075e677a21c492cd6e4f87.ctex"
+uid="uid://jte6orcmf6ic"
+path="res://.godot/imported/icon2.png-8b5dd53f08813469c78c52abed7f8cb1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/icon.svg"
-dest_files=["res://.godot/imported/icon.svg-22ca46ad79075e677a21c492cd6e4f87.ctex"]
+source_file="res://MiniGames/testMiniGame/Player/icon2.png"
+dest_files=["res://.godot/imported/icon2.png-8b5dd53f08813469c78c52abed7f8cb1.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://scoslup3w2gq"]
+
+[ext_resource type="Script" uid="uid://c3i8y5qqgnx4v" path="res://MiniGames/testMiniGame/victory_screen.gd" id="1_qyds8"]
+[ext_resource type="Texture2D" uid="uid://cvpjcai5hv0xs" path="res://Assets/samplegamepic.png" id="1_rbj82"]
+
+[node name="VictoryScreen" type="ColorRect"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.756058, 0.000554659, 0.77891, 1)
+script = ExtResource("1_qyds8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 1132.0
+offset_bottom = 171.0
+
+[node name="VSText" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 127.0
+offset_right = 577.0
+offset_bottom = 634.0
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "The winner is: 
+"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 609.0
+offset_top = 126.0
+offset_right = 1109.0
+offset_bottom = 626.0
+texture = ExtResource("1_rbj82")
