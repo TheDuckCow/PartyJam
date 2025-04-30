@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://scoslup3w2gq"]
 
 [ext_resource type="Script" uid="uid://c3i8y5qqgnx4v" path="res://MiniGames/testMiniGame/victory_screen.gd" id="1_qyds8"]
-[ext_resource type="Texture2D" uid="uid://cvpjcai5hv0xs" path="res://Assets/samplegamepic.png" id="1_rbj82"]
+[ext_resource type="Texture2D" uid="uid://cvpjcai5hv0xs" path="res://Assets/Art/samplegamepic.png" id="1_rbj82"]
 
 [node name="VictoryScreen" type="ColorRect"]
 anchors_preset = -1

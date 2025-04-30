@@ -8,15 +8,12 @@ func _ready() -> void:
 func toggleTitleScreen():
 	titleScreenOn = !titleScreenOn
 	$TitleScreen.visible = !$TitleScreen.visible
+	$AudioStreamPlayer2D.play()
 	
 func playersTitleInput():
-	if Input.is_action_just_pressed("p1_action1") or Input.is_action_just_pressed("p1_action2"):
+	if Input.is_action_just_pressed("p1_action1") or Input.is_action_just_pressed("p1_action2") or Input.is_action_just_pressed("p2_action1") or Input.is_action_just_pressed("p2_action2"):
 		toggleTitleScreen()
-		print("Player 1 dismiss titlescreen")
-		return
-	elif Input.is_action_just_pressed("p2_action1") or Input.is_action_just_pressed("p2_action2"):
-		toggleTitleScreen()
-		print("Player 2 dismiss titlescreen")
+		$AudioStreamPlayer2D.play()
 		return
 	else:
 		return
@@ -43,6 +40,7 @@ func _on_end_zone_body_entered(body: Node2D) -> void:
 	$VictoryScreen.SetWinner(winnerText)
 	$VictoryScreen.visible = true
 	victoryScreenOn = true
+	$AudioStreamPlayer2D.play()
 	
 func victoryScene():
 	if Input.is_action_just_pressed("p1_action1") or Input.is_action_just_pressed("p1_action2") or Input.is_action_just_pressed("p2_action1") or Input.is_action_just_pressed("p2_action2"):
