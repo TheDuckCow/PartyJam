@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cvpjcai5hv0xs" path="res://Assets/Art/samplegamepic.png" id="1_rbj82"]
 
 [node name="VictoryScreen" type="ColorRect"]
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -1.0
@@ -19,12 +19,12 @@ layout_mode = 0
 offset_right = 1132.0
 offset_bottom = 171.0
 
-[node name="VSText" type="RichTextLabel" parent="."]
+[node name="WinnerText" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 127.0
-offset_right = 577.0
-offset_bottom = 634.0
+offset_left = 21.0
+offset_top = 80.0
+offset_right = 582.0
+offset_bottom = 233.0
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "The winner is: 
@@ -34,8 +34,18 @@ horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 609.0
-offset_top = 126.0
-offset_right = 1109.0
-offset_bottom = 626.0
+offset_left = 597.0
+offset_top = 72.0
+offset_right = 1097.0
+offset_bottom = 572.0
 texture = ExtResource("1_rbj82")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 399.0
+offset_right = 594.0
+offset_bottom = 623.0
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "Your link to your itch page for comments HERE"

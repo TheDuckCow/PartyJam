@@ -15,3 +15,8 @@ func playerWins(whichPlayerWon: int):
 
 func loadNewScene(scenePath: String = "res://menu.tscn"):
 	get_tree().change_scene_to_file(scenePath)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().change_scene_to_file("res://menu.tscn")
+		get_viewport().set_input_as_handled()
