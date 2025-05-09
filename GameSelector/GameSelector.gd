@@ -17,6 +17,8 @@ func get_levels(path) -> void:
 		while file_name != "":
 			if dir.current_is_dir():
 				pass
+			elif file_name.get_extension() == "remap":
+				pass
 			else:
 				create_level_btn("%s/%s" % [dir.get_current_dir(), file_name], file_name)
 			file_name = dir.get_next()
@@ -25,6 +27,6 @@ func get_levels(path) -> void:
 
 func create_level_btn(lvlPath: String, lvlName: String) -> void:
 	var btn = LEVEL_BTN.instantiate()
-	btn.text = lvlName.trim_suffix('.tscn')
+	btn.text = lvlName.trim_suffix(".pck")
 	btn.level_path = lvlPath
 	grid.add_child(btn)

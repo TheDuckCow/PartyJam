@@ -14,7 +14,14 @@ func playerWins(whichPlayerWon: int):
 		printerr("Winning Player not recognized!")
 
 func loadNewScene(scenePath: String = "res://menu.tscn"):
-	get_tree().change_scene_to_file(scenePath)
+	if scenePath.get_extension() == "tscn":
+		get_tree().change_scene_to_file(scenePath)
+	else:
+		var success = ProjectSettings.load_resource_pack(scenePath)
+		if success:
+			var unpackedScene = scenePath.trim_suffix(".pck") + ".tscn"
+			print("unpackedScene: ", unpackedScene)
+			get_tree().change_scene_to_file(unpackedScene)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):

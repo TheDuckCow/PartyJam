@@ -27,8 +27,8 @@ func _ready() -> void:
 			else:
 				addGame(file_name)
 			file_name = dir.get_next()
-	else:
-		print("An error occured when trying to open path")
+	#else:
+	#	print("An error occured when trying to open path")
 	if games.size() == 0:
 		visible = false
 	randomize()
