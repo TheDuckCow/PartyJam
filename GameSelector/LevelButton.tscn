@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dgo1ppw2shkvu"]
 
-[ext_resource type="Script" uid="uid://cjfiynmeoc6ne" path="res://gameselector/LevelButton.gd" id="1_ju1u4"]
+[ext_resource type="Script" uid="uid://cjfiynmeoc6ne" path="res://gameselector/levelbutton.gd" id="1_ju1u4"]
 
 
 [node name="LevelButton" type="Button"]
