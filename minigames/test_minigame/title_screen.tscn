@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bkix4pi83oj1i"]
 
-[ext_resource type="Texture2D" uid="uid://cvpjcai5hv0xs" path="res://Assets/Art/samplegamepic.png" id="1_v6p8y"]
+[ext_resource type="Texture2D" uid="uid://cvpjcai5hv0xs" path="res://assets/art/samplegamepic.png" id="1_v6p8y"]
 
 
 [node name="TitleScreen" type="ColorRect"]

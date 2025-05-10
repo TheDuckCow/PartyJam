@@ -13,11 +13,11 @@ config_version=5
 config/name="PNWParty"
 run/main_scene="uid://fmbcc2bisml0"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://Assets/Art/icon.svg"
+config/icon="res://assets/art/icon.svg"
 
 [autoload]
 
-Global="*res://gameselector/global.gd"
+Global="*res://game_selector/global.gd"
 
 [input]
 
