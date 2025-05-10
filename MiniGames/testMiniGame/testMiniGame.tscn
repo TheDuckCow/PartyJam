@@ -1,24 +1,23 @@
-[gd_scene load_steps=11 format=3 uid="uid://bgxlijln835cv"]
+[gd_scene load_steps=11 format=3 uid="uid://cy4g1qkat17pl"]
 
-[ext_resource type="Script" uid="uid://c512q2m33rd6s" path="res://minigames/testMiniGame/test_mini_game.gd" id="1_exqvy"]
-[ext_resource type="PackedScene" uid="uid://brtcia5teyo2p" path="res://minigames/testMiniGame/Player/player2.tscn" id="1_pbytr"]
-[ext_resource type="Texture2D" uid="uid://jte6orcmf6ic" path="res://Assets/Art/icon2.png" id="2_8oa5a"]
-[ext_resource type="PackedScene" uid="uid://d0arsplj7ije" path="res://minigames/testMiniGame/Player/player.tscn" id="2_b0y26"]
-[ext_resource type="AudioStream" uid="uid://b1by7pjwgng6" path="res://Assets/SFX/testSFX.mp3" id="2_y6jnw"]
-[ext_resource type="Texture2D" uid="uid://xh81iii5pisp" path="res://Assets/Art/TestIcon.png" id="3_8vxln"]
-[ext_resource type="Texture2D" uid="uid://danovm8dh18b0" path="res://Assets/Art/icon.svg" id="5_exqvy"]
-[ext_resource type="PackedScene" uid="uid://bkix4pi83oj1i" path="res://minigames/testMiniGame/title_screen.tscn" id="6_8vxln"]
-[ext_resource type="PackedScene" uid="uid://scoslup3w2gq" path="res://minigames/testMiniGame/victory_screen.tscn" id="8_4jt3p"]
-
+[ext_resource type="Script" uid="uid://c512q2m33rd6s" path="res://minigames/testminigame/test_mini_game.gd" id="1_ymyjj"]
+[ext_resource type="AudioStream" uid="uid://b1by7pjwgng6" path="res://Assets/SFX/testSFX.mp3" id="2_1hf28"]
+[ext_resource type="PackedScene" uid="uid://brtcia5teyo2p" path="res://minigames/testminigame/player/player2.tscn" id="3_6jyjr"]
+[ext_resource type="Texture2D" uid="uid://jte6orcmf6ic" path="res://Assets/Art/icon2.png" id="4_aujxr"]
+[ext_resource type="Texture2D" uid="uid://xh81iii5pisp" path="res://Assets/Art/TestIcon.png" id="5_2m8i7"]
+[ext_resource type="PackedScene" uid="uid://d0arsplj7ije" path="res://minigames/testminigame/player/player.tscn" id="6_pgptb"]
+[ext_resource type="Texture2D" uid="uid://danovm8dh18b0" path="res://Assets/Art/icon.svg" id="7_krt0l"]
+[ext_resource type="PackedScene" uid="uid://bkix4pi83oj1i" path="res://minigames/testminigame/title_screen.tscn" id="8_s02pj"]
+[ext_resource type="PackedScene" uid="uid://scoslup3w2gq" path="res://minigames/testminigame/victory_screen.tscn" id="9_yo1f7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exqvy"]
 size = Vector2(82, 649)
 
 [node name="MiniGame" type="Node2D"]
-script = ExtResource("1_exqvy")
+script = ExtResource("1_ymyjj")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_y6jnw")
+stream = ExtResource("2_1hf28")
 
 [node name="EndZone" type="Area2D" parent="."]
 collision_layer = 3
@@ -34,22 +33,22 @@ color = Color(0, 1, 0, 1)
 position = Vector2(1111, 325.5)
 shape = SubResource("RectangleShape2D_exqvy")
 
-[node name="Player" parent="." instance=ExtResource("1_pbytr")]
+[node name="Player" parent="." instance=ExtResource("3_6jyjr")]
 position = Vector2(128, 172)
 collision_mask = 3
-ogTexture = ExtResource("2_8oa5a")
-otherTexture = ExtResource("3_8vxln")
+ogTexture = ExtResource("4_aujxr")
+otherTexture = ExtResource("5_2m8i7")
 
-[node name="Player2" parent="." instance=ExtResource("2_b0y26")]
+[node name="Player2" parent="." instance=ExtResource("6_pgptb")]
 position = Vector2(126, 404)
 collision_mask = 3
-ogTexture = ExtResource("5_exqvy")
-otherTexture = ExtResource("3_8vxln")
+ogTexture = ExtResource("7_krt0l")
+otherTexture = ExtResource("5_2m8i7")
 
-[node name="TitleScreen" parent="." instance=ExtResource("6_8vxln")]
+[node name="TitleScreen" parent="." instance=ExtResource("8_s02pj")]
 visible = false
 
-[node name="VictoryScreen" parent="." instance=ExtResource("8_4jt3p")]
+[node name="VictoryScreen" parent="." instance=ExtResource("9_yo1f7")]
 visible = false
 offset_right = 1156.0
 offset_bottom = 649.0

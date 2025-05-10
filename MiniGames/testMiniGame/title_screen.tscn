@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cvpjcai5hv0xs" path="res://Assets/Art/samplegamepic.png" id="1_v6p8y"]
 
+
 [node name="TitleScreen" type="ColorRect"]
 anchors_preset = 15
 anchor_right = 1.0
