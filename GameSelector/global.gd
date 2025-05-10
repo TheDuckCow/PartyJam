@@ -19,6 +19,7 @@ func loadNewScene(scenePath: String = "res://menu.tscn"):
 	else:
 		var success = ProjectSettings.load_resource_pack(scenePath)
 		if success:
+			print("scenePath: ", scenePath)
 			var unpackedScene = scenePath.trim_suffix(".pck") + ".tscn"
 			print("unpackedScene: ", unpackedScene)
 			get_tree().change_scene_to_file(unpackedScene)

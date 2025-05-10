@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://brtcia5teyo2p"]
 
-[ext_resource type="Script" uid="uid://bgkk1ivofbxda" path="res://MiniGames/testMiniGame/Player/player2.gd" id="1_rihsh"]
+[ext_resource type="Script" uid="uid://bgkk1ivofbxda" path="res://minigames/testMiniGame/Player/player2.gd" id="1_rihsh"]
 [ext_resource type="Texture2D" uid="uid://jte6orcmf6ic" path="res://Assets/Art/icon2.png" id="2_rihsh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ouk20"]

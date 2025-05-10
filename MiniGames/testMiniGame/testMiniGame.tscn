@@ -1,14 +1,15 @@
 [gd_scene load_steps=11 format=3 uid="uid://bgxlijln835cv"]
 
-[ext_resource type="Script" uid="uid://c512q2m33rd6s" path="res://MiniGames/testMiniGame/test_mini_game.gd" id="1_exqvy"]
-[ext_resource type="PackedScene" uid="uid://brtcia5teyo2p" path="res://MiniGames/testMiniGame/Player/player2.tscn" id="1_pbytr"]
+[ext_resource type="Script" uid="uid://c512q2m33rd6s" path="res://minigames/testMiniGame/test_mini_game.gd" id="1_exqvy"]
+[ext_resource type="PackedScene" uid="uid://brtcia5teyo2p" path="res://minigames/testMiniGame/Player/player2.tscn" id="1_pbytr"]
 [ext_resource type="Texture2D" uid="uid://jte6orcmf6ic" path="res://Assets/Art/icon2.png" id="2_8oa5a"]
-[ext_resource type="PackedScene" uid="uid://d0arsplj7ije" path="res://MiniGames/testMiniGame/Player/player.tscn" id="2_b0y26"]
+[ext_resource type="PackedScene" uid="uid://d0arsplj7ije" path="res://minigames/testMiniGame/Player/player.tscn" id="2_b0y26"]
 [ext_resource type="AudioStream" uid="uid://b1by7pjwgng6" path="res://Assets/SFX/testSFX.mp3" id="2_y6jnw"]
 [ext_resource type="Texture2D" uid="uid://xh81iii5pisp" path="res://Assets/Art/TestIcon.png" id="3_8vxln"]
 [ext_resource type="Texture2D" uid="uid://danovm8dh18b0" path="res://Assets/Art/icon.svg" id="5_exqvy"]
-[ext_resource type="PackedScene" uid="uid://bkix4pi83oj1i" path="res://MiniGames/testMiniGame/title_screen.tscn" id="6_8vxln"]
-[ext_resource type="PackedScene" uid="uid://scoslup3w2gq" path="res://MiniGames/testMiniGame/victory_screen.tscn" id="8_4jt3p"]
+[ext_resource type="PackedScene" uid="uid://bkix4pi83oj1i" path="res://minigames/testMiniGame/title_screen.tscn" id="6_8vxln"]
+[ext_resource type="PackedScene" uid="uid://scoslup3w2gq" path="res://minigames/testMiniGame/victory_screen.tscn" id="8_4jt3p"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exqvy"]
 size = Vector2(82, 649)
