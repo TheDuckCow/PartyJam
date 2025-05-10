@@ -1,6 +1,6 @@
 extends Node2D
 
-const LEVEL_BTN = preload("res://GameSelector/LevelButton.tscn")
+const LEVEL_BTN = preload("res://gameselector/levelbutton.tscn")
 
 @export_dir var dirPath
 
