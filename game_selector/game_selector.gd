@@ -17,7 +17,7 @@ func get_levels(path) -> void:
 		while file_name != "":
 			if dir.current_is_dir():
 				pass
-			elif file_name.get_extension() == "remap":
+			elif file_name.get_extension() in ["remap", "DS_Store"]:
 				pass
 			else:
 				create_level_btn("%s/%s" % [dir.get_current_dir(), file_name], file_name)
