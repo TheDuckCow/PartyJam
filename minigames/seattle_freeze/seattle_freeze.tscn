@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqvpcqhomdmot"]
+
+[ext_resource type="Script" uid="uid://ny04ke47jr4e" path="res://minigames/seattle_freeze/slide_generator.gd" id="1_8yysh"]
+[ext_resource type="PackedScene" uid="uid://pvovv4p0vpyb" path="res://minigames/seattle_freeze/slide_player.tscn" id="1_da65w"]
+
+[node name="SeattleFreeze" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.51825, -0.233867, 0.822632, 0, 0.961885, 0.273455, -0.855229, 0.141718, -0.498497, 11.66, 3.94611, -7.90275)
+visible = false
+
+[node name="SlideGenerator" type="Node3D" parent="."]
+script = ExtResource("1_8yysh")
+
+[node name="SlidePlayerA" parent="." instance=ExtResource("1_da65w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.48357, 0.894416, -1.71509)
+
+[node name="SlidePlayerB" parent="." instance=ExtResource("1_da65w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.44806, 0.894416, -1.71509)
+player = 1
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.966877, -0.0188357, 0.254547, -0.255243, -0.0713509, 0.964241, 0, -0.997273, -0.0737952, 0, 3.21649, 0)

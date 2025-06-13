@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://pvovv4p0vpyb"]
+
+[ext_resource type="Script" uid="uid://c5i1vrolicqbn" path="res://minigames/seattle_freeze/slide_player.gd" id="1_muo5i"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wfm3m"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_da65w"]
+
+[node name="SlidePlayer" type="CharacterBody3D"]
+floor_stop_on_slope = false
+script = ExtResource("1_muo5i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_wfm3m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_da65w")
