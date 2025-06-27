@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://pvovv4p0vpyb"]
+[gd_scene load_steps=6 format=3 uid="uid://pvovv4p0vpyb"]
 
 [ext_resource type="Script" uid="uid://c5i1vrolicqbn" path="res://minigames/seattle_freeze/slide_player.gd" id="1_muo5i"]
 
@@ -6,7 +6,17 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_da65w"]
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_muo5i"]
+top_radius = 0.6
+bottom_radius = 0.6
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ebq5t"]
+albedo_color = Color(0.0714836, 0.424577, 0.69346, 1)
+
 [node name="SlidePlayer" type="CharacterBody3D"]
+collision_layer = 3
+collision_mask = 3
 floor_stop_on_slope = false
 script = ExtResource("1_muo5i")
 
@@ -15,3 +25,8 @@ shape = SubResource("CapsuleShape3D_wfm3m")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_da65w")
+
+[node name="colorized" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+mesh = SubResource("CylinderMesh_muo5i")
+surface_material_override/0 = SubResource("StandardMaterial3D_ebq5t")

@@ -15,3 +15,8 @@ data_*/
 mono_crash.*.json
 
 .DS_store
+
+minigames/seattle_freeze/dev_files/**
+Assets/**
+
+build/**

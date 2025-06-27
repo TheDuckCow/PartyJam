@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3877x4alhfjb"]
+
+[ext_resource type="PackedScene" uid="uid://bd6lw2o471nmx" path="res://minigames/seattle_freeze/dev_files/mock_03.blend" id="1_4wei2"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="mock_03" parent="." instance=ExtResource("1_4wei2")]
+
+[node name="Camera" parent="mock_03" index="5"]
+transform = Transform3D(0.976112, -0.0144968, 0.216783, -2.468e-08, 0.997771, 0.0667234, -0.217267, -0.0651295, 0.973937, -13.6967, 8.50518, 7.1982)
+
+[node name="background_card" parent="mock_03" index="12"]
+transform = Transform3D(94.2306, 30.7111, -1.34242e-06, 0, -4.33219e-06, -99.1089, -30.7111, 94.2307, -4.11895e-06, -43.7612, -3.03243, -191.976)
+
+[node name="AnimationPlayer" parent="mock_03" index="13"]
+autoplay = "CameraAction"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.169608, -0.769027, 0.616305, 0, 0.625365, 0.780332, -0.985512, -0.13235, 0.106067, 0.0569122, 9.4454, 0)
+
+[editable path="mock_03"]

@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://duhfc6bve53da"]
+
+[ext_resource type="Texture2D" uid="uid://dk5otgy0jn7dr" path="res://minigames/seattle_freeze/textures/asphault_newsprint.jpg" id="1_xw22s"]
+
+[resource]
+albedo_color = Color(0.246588, 0.246588, 0.246588, 1)
+albedo_texture = ExtResource("1_xw22s")
+uv1_scale = Vector3(0.04, 8, 1)
+uv1_world_triplanar = true
