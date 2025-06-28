@@ -9,31 +9,53 @@ enum GameState {
 	ENDED
 }
 
+const max_time_msec := 30000
 const FreezePlayer = preload("res://minigames/seattle_freeze/slide_player.gd")
-
 
 @export var generator: Node3D
 @export var reporter_audio: AudioStreamPlayer
 @export var anim_player: AnimationPlayer
+@export var cam: Camera3D
 
 ## Reference of all players in the scene
 var players: Array[FreezePlayer] = []
-
 ## When player interactivity actually begun
 var start_ticks: int
+
+## Game state value, matched to GameState
+var state: int = 0
 
 
 func _ready() -> void:
 	populate_players()
 	
 	# TODO: setup intro etc
-	reporter_audio.finished.connect(start_game)
+	reporter_audio.finished.connect(intro_anim)
+	change_gamestate.connect(cam.set_new_offset)
+	set_state(GameState.INSTRUCTIONS)
+
+
+func set_state(new_state: int) -> void:
+	state = new_state
+	change_gamestate.emit(state)
+	
+	match state:
+		GameState.INSTRUCTIONS:
+			reporter_audio.play(0.0)
+		GameState.INTRO_ANIM:
+			reporter_audio.stop()
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	# check input type
-	intro_anim()
-	pass
+	if state != GameState.INSTRUCTIONS:
+		return
+	var do_continue: bool = event.is_action("esc") \
+							or event.is_action("p1_action1") \
+							or event.is_action("p1_action2") \
+							or event.is_action("p1_action2") \
+							or event.is_action("p2_action2")
+	if do_continue:
+		intro_anim()
 
 
 func populate_players() -> void:
@@ -42,27 +64,36 @@ func populate_players() -> void:
 			print("Append players", ch)
 			players.append(ch)
 			ch.state = FreezePlayer.State.CUTSCENE
-			var res = change_gamestate.connect(ch._on_gamestate_updated)
-			assert(res == OK)
+			change_gamestate.connect(ch._on_gamestate_updated)
 	if not players:
 		push_error("Could not identify any freeze slide players")
 	generator.players = players
 
 
-func intro_anim(passvar = null) -> void:
+func intro_anim(_discard = null) -> void:
 	anim_player.play("report_to_gameview")
-	start_game() # connect to end of signal
+	set_state(GameState.INTRO_ANIM)
+	anim_player.animation_finished.connect(start_game)
 
 
 ## Run after the intro splash updates
-func start_game() -> void:
+func start_game(_discard = null) -> void:
+	print("Game start")
+	anim_player.animation_finished.disconnect(start_game)
 	start_ticks = Time.get_ticks_msec()
-	change_gamestate.emit(GameState.PLAYING)
+	set_state(GameState.PLAYING)
 	
 
 func end_game(winning_player:FreezePlayer) -> void:
+	print("game end triggered")
+	set_state(GameState.ENDED)
 	match winning_player.player:
 		FreezePlayer.Player.A:
 			Global.playerWins(1)
 		FreezePlayer.Player.B:
 			Global.playerWins(2)
+
+func check_remaining_time_msec() -> int:
+	var ticks = Time.get_ticks_msec()
+	var duration = ticks - start_ticks
+	return max_time_msec - duration

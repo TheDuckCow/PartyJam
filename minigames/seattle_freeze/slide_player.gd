@@ -5,9 +5,9 @@ const FreezeManager = preload("res://minigames/seattle_freeze/seattle_freeze_man
 var GRAVITY:float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
-enum State {CUTSCENE, PLAYING}
+enum State {CUTSCENE, PLAYING, ENDED}
 enum Player {A, B}
-@export var state: State = State.PLAYING
+@export var state: State = State.CUTSCENE
 @export var player: Player = Player.A
 
 @onready var colormesh := %colorized
@@ -36,6 +36,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	velocity.y -= GRAVITY * delta
 	
+	if state == State.ENDED:
+		velocity.z = lerp(velocity.z, 0.0, delta * 0.1)
+	
 	# or alt to this: forward pressing increases
 	#if Input.is_action_just_pressed(input_faster):
 		#velocity.z -= delta * 10
@@ -57,12 +60,14 @@ func _on_gamestate_updated(new_gamestate) -> void:
 	match new_gamestate:
 		FreezeManager.GameState.PLAYING:
 			state = State.PLAYING
+		FreezeManager.GameState.ENDED:
+			state = State.ENDED
 		_:
 			state = State.CUTSCENE
 
 
 func get_user_input() -> Vector2:
-	if state == State.CUTSCENE:
+	if state == State.CUTSCENE or state == State.ENDED:
 		return Vector2.ZERO
 	var input_dir:Vector2
 	if player == Player.A:

@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8vqd0a4lakea"]
+
+[ext_resource type="Script" uid="uid://b07lllfe3e7b3" path="res://minigames/seattle_freeze/freeze_hud.gd" id="1_18mwc"]
+
+[node name="FreezeHUD" type="Control" node_paths=PackedStringArray("time_remaining")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_18mwc")
+time_remaining = NodePath("Control/time_remaining")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.01
+anchor_top = 0.01
+anchor_right = 0.99
+anchor_bottom = 0.99
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="time_remaining" type="Label" parent="Control"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "0.00"

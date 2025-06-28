@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ci2fxybjwlu65"]
+[gd_scene load_steps=7 format=3 uid="uid://cwuir5osgw45u"]
 
-[ext_resource type="Material" uid="uid://duhfc6bve53da" path="res://minigames/seattle_freeze/segments/road_mat.tres" id="1_nljau"]
+[ext_resource type="Material" uid="uid://duhfc6bve53da" path="res://minigames/seattle_freeze/segments/road_mat.tres" id="1_48h3i"]
+[ext_resource type="Script" uid="uid://n7s4t0jks8lf" path="res://minigames/seattle_freeze/end_game.gd" id="2_ol8ax"]
 
 [sub_resource type="Curve3D" id="Curve3D_gg7nd"]
 _data = {
@@ -14,6 +15,9 @@ size = Vector2(16, 8)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nljau"]
 albedo_color = Color(0.0989434, 0.108725, 0.120459, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gg7nd"]
+size = Vector3(20, 20, 0.5)
 
 [node name="IntersectionStart" type="Path3D"]
 curve = SubResource("Curve3D_gg7nd")
@@ -37,7 +41,7 @@ path_joined = false
 metadata/_edit_lock_ = true
 
 [node name="road" type="CSGPolygon3D" parent="."]
-material_override = ExtResource("1_nljau")
+material_override = ExtResource("1_48h3i")
 calculate_tangents = false
 polygon = PackedVector2Array(4, 0, 5, -0.5, -5, -0.5, -4, 0)
 mode = 2
@@ -56,3 +60,14 @@ path_joined = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, -5.095)
 mesh = SubResource("PlaneMesh_gg7nd")
 surface_material_override/0 = SubResource("StandardMaterial3D_nljau")
+
+[node name="EndGame" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.70572)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("2_ol8ax")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EndGame"]
+shape = SubResource("BoxShape3D_gg7nd")
+
+[connection signal="body_entered" from="EndGame" to="EndGame" method="_on_body_entered"]

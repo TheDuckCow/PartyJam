@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cccb078u7vver"]
+[gd_scene load_steps=6 format=3 uid="uid://th2ektlslmar"]
 
-[ext_resource type="Material" uid="uid://duhfc6bve53da" path="res://minigames/seattle_freeze/segments/road_mat.tres" id="1_4o1uq"]
-[ext_resource type="Texture2D" uid="uid://4er8qngt0vt6" path="res://minigames/seattle_freeze/textures/snow_decal.png" id="2_aww0m"]
-[ext_resource type="PackedScene" uid="uid://ctmrcbdsj8yxv" path="res://minigames/seattle_freeze/objects/suv.tscn" id="3_qc00k"]
+[ext_resource type="Material" uid="uid://duhfc6bve53da" path="res://minigames/seattle_freeze/segments/road_mat.tres" id="1_7gc4o"]
+[ext_resource type="Texture2D" uid="uid://4er8qngt0vt6" path="res://minigames/seattle_freeze/textures/snow_decal.png" id="2_bchsg"]
 
 [sub_resource type="Curve3D" id="Curve3D_wfm3m"]
 _data = {
@@ -19,7 +18,7 @@ blend_mode = 1
 shading_mode = 0
 diffuse_mode = 3
 specular_mode = 2
-albedo_texture = ExtResource("2_aww0m")
+albedo_texture = ExtResource("2_bchsg")
 albedo_texture_force_srgb = true
 disable_receive_shadows = true
 grow_amount = 0.393
@@ -47,7 +46,7 @@ metadata/_edit_lock_ = true
 
 [node name="road" type="CSGPolygon3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.019614, 4.76837e-07, 0.0141745)
-material_override = ExtResource("1_4o1uq")
+material_override = ExtResource("1_7gc4o")
 calculate_tangents = false
 polygon = PackedVector2Array(4, 0, 5, -0.5, -5, -0.5, -4, 0)
 mode = 2
@@ -67,12 +66,3 @@ transform = Transform3D(1.9253, 0, 0, 0, 1.88985, 0.36776, 0, -0.36776, 1.88985,
 visible = false
 mesh = SubResource("PlaneMesh_qc00k")
 surface_material_override/0 = SubResource("StandardMaterial3D_llcbb")
-
-[node name="SUV" parent="." instance=ExtResource("3_qc00k")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0.237652, 0.97135, -1.03881e-08, 0.97135, -0.237652, -4.24591e-08, 3.13113, 0.151895, -2.62126)
-
-[node name="SUV2" parent="." instance=ExtResource("3_qc00k")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0.237652, 0.97135, -1.03881e-08, 0.97135, -0.237652, -4.24591e-08, -2.79162, -0.0123594, -3.29261)
-
-[node name="SUV3" parent="." instance=ExtResource("3_qc00k")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0.237652, 0.97135, -1.03881e-08, 0.97135, -0.237652, -4.24591e-08, 3.13113, -1.11755, -7.80983)
