@@ -17,7 +17,11 @@ albedo_color = Color(0.0714836, 0.424577, 0.69346, 1)
 [node name="SlidePlayer" type="CharacterBody3D"]
 collision_layer = 3
 collision_mask = 3
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
 floor_stop_on_slope = false
+floor_snap_length = 0.5
 script = ExtResource("1_muo5i")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

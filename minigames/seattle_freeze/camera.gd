@@ -26,7 +26,7 @@ func set_new_offset(new_state: int) -> void:
 		playing = true
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if playing == false:
 		return
 	set_camera_zy()

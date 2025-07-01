@@ -340,7 +340,7 @@ cam = NodePath("Camera3D")
 [node name="FreezeHUD" parent="." instance=ExtResource("3_6nhq1")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.00698362, -0.0558201, 0.998416, 0, 0.998441, 0.0558215, -0.999976, 0.000389836, -0.00697274, 6.567, 1.39, -2.07)
+transform = Transform3D(-0.00698363, -0.0558201, 0.998416, 0, 0.998441, 0.0558214, -0.999976, 0.000389836, -0.00697273, 6.567, 1.39, -2.07)
 projection = 1
 size = 1.503
 script = ExtResource("2_mfkky")
@@ -367,8 +367,8 @@ curve = SubResource("Curve3D_gg7nd")
 [node name="SlidePlayerA" parent="." instance=ExtResource("2_0en57")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.9, -0.3)
 
-[node name="SlidePlayerB" parent="." instance=ExtResource("2_0en57")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.9, -0.3)
+[node name="SlidePlayerA2" parent="." instance=ExtResource("2_0en57")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.10927, 0.9, -0.3)
 player = 1
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -378,7 +378,7 @@ transform = Transform3D(0.966877, -0.0188357, 0.254547, -0.255243, -0.0713509, 0
 environment = SubResource("Environment_0en57")
 
 [node name="backplate" type="MeshInstance3D" parent="." node_paths=PackedStringArray("vparent")]
-transform = Transform3D(-0.000504066, -0.000850501, 0.426999, -0.00748099, 0.445912, 0.000805348, -0.426934, -0.00781253, -0.000518255, -104.401, -18.5288, 18.0221)
+transform = Transform3D(-0.000504067, -0.000850501, 0.426999, -0.00748099, 0.445912, 0.000805348, -0.426934, -0.00781253, -0.000518255, -104.401, -18.5288, 18.0221)
 visible = false
 mesh = SubResource("PlaneMesh_mfkky")
 surface_material_override/0 = SubResource("StandardMaterial3D_mrdqw")

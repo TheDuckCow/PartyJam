@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://cifwqtwits40h"]
+
+[ext_resource type="PackedScene" uid="uid://pvovv4p0vpyb" path="res://minigames/seattle_freeze/slide_player.tscn" id="1_vrxd0"]
+[ext_resource type="PackedScene" uid="uid://cccb078u7vver" path="res://minigames/seattle_freeze/segments/basic.tscn" id="2_hdyax"]
+
+[sub_resource type="Environment" id="Environment_vrxd0"]
+background_mode = 1
+background_color = Color(0.665773, 0.78455, 0.842266, 1)
+ambient_light_source = 1
+ambient_light_energy = 0.0
+reflected_light_source = 1
+
+[node name="TestFreeze" type="Node3D"]
+
+[node name="SlidePlayer" parent="." instance=ExtResource("1_vrxd0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.333817, -0.90316)
+state = 1
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="BasicSegment" parent="Node3D" instance=ExtResource("2_hdyax")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.64804, -0.357353, 0.672565, 0, 0.883087, 0.46921, -0.761606, 0.304067, -0.572276, 9.22584, 4.80974, -10.8487)
+projection = 1
+size = 10.08
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.966877, -0.0188357, 0.254547, -0.255243, -0.0713509, 0.964241, 0, -0.997273, -0.0737952, 0, 3.21649, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vrxd0")

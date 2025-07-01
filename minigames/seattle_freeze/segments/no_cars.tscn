@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://th2ektlslmar"]
+[gd_scene load_steps=7 format=3 uid="uid://th2ektlslmar"]
 
 [ext_resource type="Material" uid="uid://duhfc6bve53da" path="res://minigames/seattle_freeze/segments/road_mat.tres" id="1_7gc4o"]
 [ext_resource type="Texture2D" uid="uid://4er8qngt0vt6" path="res://minigames/seattle_freeze/textures/snow_decal.png" id="2_bchsg"]
+[ext_resource type="PackedScene" uid="uid://ctmrcbdsj8yxv" path="res://minigames/seattle_freeze/objects/suv.tscn" id="3_7gc4o"]
 
 [sub_resource type="Curve3D" id="Curve3D_wfm3m"]
 _data = {
@@ -66,3 +67,6 @@ transform = Transform3D(1.9253, 0, 0, 0, 1.88985, 0.36776, 0, -0.36776, 1.88985,
 visible = false
 mesh = SubResource("PlaneMesh_qc00k")
 surface_material_override/0 = SubResource("StandardMaterial3D_llcbb")
+
+[node name="SUV" parent="." instance=ExtResource("3_7gc4o")]
+transform = Transform3D(0.721833, 0, -0.692068, 0, 1, 0, 0.692068, 0, 0.721833, -4.01783, 0, -5.26025)

@@ -22,24 +22,22 @@ const intersection_freq := 5
 func _ready() -> void:
 	add_first_segment()
 	for ch in get_parent().get_children():
-		print("Child: ", ch)
 		if ch is FreezePlayer:
-			print("Append players", ch)
 			players.append(ch)
 	if not players:
 		push_error("Could not identify any freeze slide players")
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	
 	if not players:
 		return
 	
 	var seg_min_z:Vector2 = seg_bounds[0]
-	var seg_max_z:Vector2 = seg_bounds[1]
+	#var seg_max_z:Vector2 = seg_bounds[1]
 	var player_zs := player_z_positions()
 	var player_min_z:float = player_zs.min()
-	var player_max_z:float = player_zs.max()
+	#var player_max_z:float = player_zs.max()
 
 	if get_child_count() == 0:
 		# Awaiting for _ready()
