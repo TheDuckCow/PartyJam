@@ -9,21 +9,23 @@ enum GameState {
 	ENDED
 }
 
-const max_time_msec := 30000
+const max_time_msec := 20000
 const FreezePlayer = preload("res://minigames/seattle_freeze/slide_player.gd")
 
 @export var generator: Node3D
 @export var reporter_audio: AudioStreamPlayer
 @export var anim_player: AnimationPlayer
 @export var cam: Camera3D
+@export var far_plane: Node3D
+@export var close_plane: Node3D
 
 ## Reference of all players in the scene
 var players: Array[FreezePlayer] = []
 ## When player interactivity actually begun
 var start_ticks: int
-
 ## Game state value, matched to GameState
 var state: int = 0
+var winner: int = -1
 
 
 func _ready() -> void:
@@ -65,6 +67,8 @@ func populate_players() -> void:
 			players.append(ch)
 			ch.state = FreezePlayer.State.CUTSCENE
 			change_gamestate.connect(ch._on_gamestate_updated)
+			ch.far_plane = far_plane
+			ch.close_plane = close_plane
 	if not players:
 		push_error("Could not identify any freeze slide players")
 	generator.players = players
@@ -82,16 +86,21 @@ func start_game(_discard = null) -> void:
 	anim_player.animation_finished.disconnect(start_game)
 	start_ticks = Time.get_ticks_msec()
 	set_state(GameState.PLAYING)
-	
+
 
 func end_game(winning_player:FreezePlayer) -> void:
-	print("game end triggered")
-	set_state(GameState.ENDED)
+	if state == GameState.ENDED:
+		push_warning("Already ended")
+		return
+	print("Minigame ended with winner: ", winning_player.player)
 	match winning_player.player:
 		FreezePlayer.Player.A:
-			Global.playerWins(1)
+			winner = 1
 		FreezePlayer.Player.B:
-			Global.playerWins(2)
+			winner = 2
+	Global.playerWins(winner)
+	set_state(GameState.ENDED)
+
 
 func check_remaining_time_msec() -> int:
 	var ticks = Time.get_ticks_msec()

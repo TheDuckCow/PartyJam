@@ -7,18 +7,19 @@ const FreezePlayer = preload("res://minigames/seattle_freeze/slide_player.gd")
 
 var GRAVITY:float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-
 var dislodged := false
-
 var input_faster: String
 var input_slower: String
 
+var cam: Camera3D
 
 func _ready() -> void:
-	pass
+	cam = get_viewport().get_camera_3d()
 
 
 func _physics_process(delta: float) -> void:
+	if cam.global_position.y - self.global_position.y > 20:
+		queue_free()
 	velocity.y -= GRAVITY * delta
 	if dislodged:
 		velocity.z -= delta * 5
@@ -27,16 +28,14 @@ func _physics_process(delta: float) -> void:
 	var _res = move_and_slide()
 	
 	var n := raycast.get_collision_normal()
-	print("Normal: ", n)
-	var xform := align_with_y(global_transform, n.normalized())
-	global_transform = global_transform.interpolate_with(xform, 12 * delta)
+	if n != Vector3.ZERO: # if nothing hit, will be Vector3.ZERO
+		var xform := align_with_y(global_transform, n.normalized())
+		global_transform = global_transform.interpolate_with(xform, 12 * delta)
 
 
 func align_with_y(xform:Transform3D, new_y: Vector3) -> Transform3D:
 	xform.basis.y = new_y
 	xform.basis.x = -xform.basis.z.cross(new_y)
-	#xform.basis = xform.basis.orthonormalized()
-	xform.orthonormalized()
 	return xform
 
 
@@ -53,9 +52,11 @@ func _on_body_entered(body: Node3D) -> void:
 		# compare the horizontal velocity, add that some?
 		body.velocity = Vector3.ZERO
 		if body is FreezePlayer:
-			print("Consider zero-setting and penalty assign player")
+			#print("Consider zero-setting and penalty assign player")
+			pass
 	elif body.global_position.z < self.global_position.z:
 		# Body is downhill of the car, and thus is being "dmanaged"
 		#body.velocity.x = 2 * randi_range(-1, 1)
 		if body is FreezePlayer:
-			print("Consider penalty assign player for SUV hit")
+			#print("Consider penalty assign player for SUV hit")
+			pass

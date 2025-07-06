@@ -31,7 +31,7 @@ curve = SubResource("Curve3D_wfm3m")
 visible = false
 calculate_tangents = false
 use_collision = true
-polygon = PackedVector2Array(4, 0, 4, 2, 5, 2, 5, -0.5, -5, -0.5, -5, 2, -4, 2, -4, 0)
+polygon = PackedVector2Array(4, 0, 4, 10, 5, 10, 5, -0.5, -5, -0.5, -5, 10, -4, 10, -4, 0)
 mode = 2
 path_node = NodePath("..")
 path_interval_type = 0
@@ -69,4 +69,5 @@ mesh = SubResource("PlaneMesh_qc00k")
 surface_material_override/0 = SubResource("StandardMaterial3D_llcbb")
 
 [node name="SUV" parent="." instance=ExtResource("3_7gc4o")]
-transform = Transform3D(0.721833, 0, -0.692068, 0, 1, 0, 0.692068, 0, 0.721833, -4.01783, 0, -5.26025)
+transform = Transform3D(0.721833, 0, -0.692068, 0, 1, 0, 0.692068, 0, 0.721833, -3.7279, 0, -4.71869)
+collision_layer = 1

@@ -6,8 +6,11 @@ const IntersectionEnd = preload("res://minigames/seattle_freeze/segments/interse
 const FreezePlayer = preload("res://minigames/seattle_freeze/slide_player.gd")
 
 const Z_MARGIN:float = 20
+const Z_MARGIN_DESPAWN:float = 40
+
 
 @export var prefabs: Array[PackedScene] = [Basic]
+@export var debug: bool = false
 
 var players: Array = []
 # First vector is the minimum z value (stored in x), with cooresponding y height there
@@ -29,23 +32,29 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	
 	if not players:
 		return
 	
 	var seg_min_z:Vector2 = seg_bounds[0]
-	#var seg_max_z:Vector2 = seg_bounds[1]
+	var seg_max_z:Vector2 = seg_bounds[1]
 	var player_zs := player_z_positions()
 	var player_min_z:float = player_zs.min()
-	#var player_max_z:float = player_zs.max()
+	var player_max_z:float = player_zs.max()
 
 	if get_child_count() == 0:
 		# Awaiting for _ready()
 		return
 	# Compare to current position to see where players are.
 	if abs(player_min_z - seg_min_z.x) < Z_MARGIN:
-		print(player_min_z, " vs ", Z_MARGIN, " vs ", seg_min_z.x)
+		if debug:
+			print(player_min_z, " vs ", Z_MARGIN, " vs ", seg_min_z.x)
 		add_segment()
+	
+	# Look at furthest back segment to see about deleting it
+	var del_seg:Node3D = get_child(0)
+	if abs(seg_max_z.x - player_max_z) > Z_MARGIN_DESPAWN:
+		del_seg.queue_free()
+		seg_bounds = get_bounds()
 
 
 func player_z_positions() -> Array[float]:
@@ -72,21 +81,26 @@ func get_bounds() -> Array[Vector2]:
 		if bounds[1].x < max_z.x:
 			bounds[1].x = max_z.x
 			bounds[1].y = max_z.y
-	
 	return bounds
+
 
 func get_curve_bounds(path: Path3D) -> Array[Vector2]:
 	var min_z: Vector2
 	var max_z: Vector2
+	var first_assign := true
 	for pts in range(path.curve.point_count):
 		var pos: Vector3 = path.curve.get_point_position(pts)
 		var posg: Vector3 = path.to_global(pos)
-		if min_z == null or posg.z < min_z.x:
+		if first_assign or posg.z < min_z.x:
 			min_z.x = posg.z
 			min_z.y = posg.y
-		if max_z == null or posg.z > max_z.x:
+		if first_assign or posg.z > max_z.x:
 			max_z.x = posg.z
 			max_z.y = posg.y
+		first_assign = false
+	
+	if max_z.x - min_z.x > 11:
+		push_warning("Should not have larger than 10 offset for path, difference of %s" % (max_z.x - min_z.x))
 	return [min_z, max_z]
 
 
@@ -100,7 +114,8 @@ func add_first_segment() -> void:
 
 
 func add_segment() -> void:
-	print("Add segment!")
+	if debug:
+		print("Add segment!")
 	segs_added += 1
 	var prior_seg = get_child(-1)
 	
@@ -120,8 +135,9 @@ func add_segment() -> void:
 	
 	var prior_bounds := get_curve_bounds(prior_seg)
 	var new_bounds := get_curve_bounds(instance)
-	print("\tprior child: ", prior_seg, " bounds ", prior_bounds)
-	print("\tnew child: ", instance, " bounds ", new_bounds)
+	if debug:
+		print("\tprior child: ", prior_seg, " bounds ", prior_bounds)
+		print("\tnew child: ", instance, " bounds ", new_bounds)
 	var prior_minz: Vector2
 	var new_maxz: Vector2
 	for val in prior_bounds:
@@ -130,13 +146,15 @@ func add_segment() -> void:
 	for val in new_bounds:
 		if new_maxz == null or new_maxz.x < val.x:
 			new_maxz = val
-	print("\tvalue z: ", prior_minz, " vs ", new_maxz)
+	if debug:
+		print("\tvalue z: ", prior_minz, " vs ", new_maxz)
 	instance.global_position.z = prior_minz.x - new_maxz.x
 	instance.global_position.y = prior_minz.y - new_maxz.y
 	# Assumes prior segment is centered at its origin (otherwise, need to offset by global_position.x/y from next maxz
 	#instance.global_position.z = prior_seg.global_position.z + prior_minz.x
 	#instance.global_position.y = prior_seg.global_position.y + prior_minz.y
-	print("\tfinal output: ", instance.global_position)
+	if debug:
+		print("\tfinal output: ", instance.global_position)
 	
 	seg_bounds = get_bounds()
 	

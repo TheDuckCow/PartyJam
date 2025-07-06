@@ -10,11 +10,17 @@ enum Player {A, B}
 @export var state: State = State.CUTSCENE
 @export var player: Player = Player.A
 
-@onready var colormesh := %colorized
+@export var far_plane: Node3D
+@export var close_plane: Node3D
 
+@onready var colormesh := %colorized
 
 var input_faster: String
 var input_slower: String
+
+var ended_velocity := Vector3.ZERO
+var ended_ms: float
+
 
 func _ready() -> void:
 	var mesh_col:Color
@@ -37,8 +43,47 @@ func _physics_process(delta: float) -> void:
 	velocity.y -= GRAVITY * delta
 	
 	if state == State.ENDED:
-		velocity.z = lerp(velocity.z, 0.0, delta * 0.1)
+		_ease_to_stopped()
+	elif global_position.z > far_plane.global_position.z:
+		global_position.z = far_plane.global_position.z
+	elif global_position.z < close_plane.global_position.z:
+		global_position.z = close_plane.global_position.z
+		velocity.z -= delta * 10 # make this grow exponentially as you get closer actually
+
+	var dir := get_user_input()
+	velocity.z -= delta * dir.x * 10
+	velocity.z = clamp(velocity.z, -1000.0, 0.0)
+	velocity.x += delta * dir.y * 10
 	
+	var _res = move_and_slide()
+
+
+func _ease_to_stopped():
+	var factor:float = (Time.get_ticks_msec() - ended_ms) / 300.0
+	if factor < 1.0:
+		print("EASING with factor ", factor)
+		var ease_factor:float = ease(factor, -2) # ease in and out
+		velocity.z = lerp(ended_velocity.z, 0.0, ease_factor)
+		velocity.x = lerp(ended_velocity.x, 0.0, ease_factor)
+
+
+func _on_gamestate_updated(new_gamestate) -> void:
+	print("Updated game state to ", new_gamestate, " compared to playing ", FreezeManager.GameState.PLAYING)
+	if new_gamestate == state:
+		push_warning("State was already active for FreezePlayer %s" % new_gamestate)
+		return
+	match new_gamestate:
+		FreezeManager.GameState.PLAYING:
+			state = State.PLAYING
+		FreezeManager.GameState.ENDED:
+			state = State.ENDED
+			ended_velocity = velocity
+			ended_ms = Time.get_ticks_msec()
+		_:
+			state = State.CUTSCENE
+
+
+func get_user_input() -> Vector2:
 	# or alt to this: forward pressing increases
 	#if Input.is_action_just_pressed(input_faster):
 		#velocity.z -= delta * 10
@@ -48,25 +93,6 @@ func _physics_process(delta: float) -> void:
 		#print("Slow down")
 	#else:
 		#velocity.z = lerp(velocity.z, 0.0, delta * 0.1)
-	var dir := get_user_input()
-	velocity.z -= delta * dir.x * 10
-	velocity.z = clamp(velocity.z, -1000.0, 0.0)
-	velocity.x += delta * dir.y * 10
-	
-	var _res = move_and_slide()
-
-func _on_gamestate_updated(new_gamestate) -> void:
-	print("Updated game state to ", new_gamestate, " compared to playing ", FreezeManager.GameState.PLAYING)
-	match new_gamestate:
-		FreezeManager.GameState.PLAYING:
-			state = State.PLAYING
-		FreezeManager.GameState.ENDED:
-			state = State.ENDED
-		_:
-			state = State.CUTSCENE
-
-
-func get_user_input() -> Vector2:
 	if state == State.CUTSCENE or state == State.ENDED:
 		return Vector2.ZERO
 	var input_dir:Vector2

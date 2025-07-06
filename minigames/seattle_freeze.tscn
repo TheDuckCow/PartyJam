@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dqvpcqhomdmot"]
+[gd_scene load_steps=22 format=3 uid="uid://dqvpcqhomdmot"]
 
 [ext_resource type="Script" uid="uid://g276qs6imuml" path="res://minigames/seattle_freeze/seattle_freeze_manager.gd" id="1_0en57"]
 [ext_resource type="Script" uid="uid://ny04ke47jr4e" path="res://minigames/seattle_freeze/slide_generator.gd" id="1_bv0cb"]
@@ -20,6 +20,13 @@ orientation = 2
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mrdqw"]
 shading_mode = 0
 albedo_texture = ExtResource("5_mrdqw")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1jhqt"]
+size = Vector2(20, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6nhq1"]
+blend_mode = 3
+albedo_color = Color(0.372111, 1, 0.495145, 1)
 
 [sub_resource type="Curve3D" id="Curve3D_gg7nd"]
 _data = {
@@ -330,18 +337,21 @@ _data = {
 &"report_to_gameview": SubResource("Animation_mh45c")
 }
 
-[node name="SeattleFreeze" type="Node3D" node_paths=PackedStringArray("generator", "reporter_audio", "anim_player", "cam")]
+[node name="SeattleFreeze" type="Node3D" node_paths=PackedStringArray("generator", "reporter_audio", "anim_player", "cam", "far_plane", "close_plane")]
 script = ExtResource("1_0en57")
 generator = NodePath("SlideGenerator")
 reporter_audio = NodePath("AudioStreamPlayer")
 anim_player = NodePath("AnimationPlayer")
 cam = NodePath("Camera3D")
+far_plane = NodePath("Camera3D/far")
+close_plane = NodePath("Camera3D/close")
 
 [node name="FreezeHUD" parent="." instance=ExtResource("3_6nhq1")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.00698363, -0.0558201, 0.998416, 0, 0.998441, 0.0558214, -0.999976, 0.000389836, -0.00697273, 6.567, 1.39, -2.07)
 projection = 1
+current = true
 size = 1.503
 script = ExtResource("2_mfkky")
 
@@ -350,6 +360,16 @@ transform = Transform3D(0.04, 0, 0, 0, 0.04, 0, 0, 0, 0.04, 2.04, 0.85, -75)
 mesh = SubResource("PlaneMesh_mfkky")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_mrdqw")
+
+[node name="far" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(0.00102868, 0.900423, -0.435014, -0.92909, -0.160031, -0.333441, -0.369854, 0.40451, 0.836409, -9.27427, 4.99802, -16.3478)
+mesh = SubResource("PlaneMesh_1jhqt")
+surface_material_override/0 = SubResource("StandardMaterial3D_6nhq1")
+
+[node name="close" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(0.00102868, 0.900424, -0.435014, -0.92909, -0.160031, -0.333441, -0.369854, 0.40451, 0.836409, 10.5144, 0.922099, -7.54593)
+mesh = SubResource("PlaneMesh_1jhqt")
+surface_material_override/0 = SubResource("StandardMaterial3D_6nhq1")
 
 [node name="SlideGenerator" type="Node3D" parent="."]
 script = ExtResource("1_bv0cb")
@@ -367,7 +387,7 @@ curve = SubResource("Curve3D_gg7nd")
 [node name="SlidePlayerA" parent="." instance=ExtResource("2_0en57")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.9, -0.3)
 
-[node name="SlidePlayerA2" parent="." instance=ExtResource("2_0en57")]
+[node name="SlidePlayerB" parent="." instance=ExtResource("2_0en57")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.10927, 0.9, -0.3)
 player = 1
 
@@ -378,7 +398,7 @@ transform = Transform3D(0.966877, -0.0188357, 0.254547, -0.255243, -0.0713509, 0
 environment = SubResource("Environment_0en57")
 
 [node name="backplate" type="MeshInstance3D" parent="." node_paths=PackedStringArray("vparent")]
-transform = Transform3D(-0.000504067, -0.000850501, 0.426999, -0.00748099, 0.445912, 0.000805348, -0.426934, -0.00781253, -0.000518255, -104.401, -18.5288, 18.0221)
+transform = Transform3D(-0.000504067, -0.0008505, 0.426999, -0.00748099, 0.445912, 0.000805347, -0.426935, -0.00781251, -0.000518255, -104.401, -18.5288, 18.0221)
 visible = false
 mesh = SubResource("PlaneMesh_mfkky")
 surface_material_override/0 = SubResource("StandardMaterial3D_mrdqw")
