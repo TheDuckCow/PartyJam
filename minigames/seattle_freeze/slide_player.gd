@@ -59,9 +59,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _ease_to_stopped():
-	var factor:float = (Time.get_ticks_msec() - ended_ms) / 300.0
+	var factor:float = (Time.get_ticks_msec() - ended_ms) / 2000.0
 	if factor < 1.0:
-		print("EASING with factor ", factor)
 		var ease_factor:float = ease(factor, -2) # ease in and out
 		velocity.z = lerp(ended_velocity.z, 0.0, ease_factor)
 		velocity.x = lerp(ended_velocity.x, 0.0, ease_factor)

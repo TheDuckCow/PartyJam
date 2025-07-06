@@ -9,7 +9,7 @@ enum GameState {
 	ENDED
 }
 
-const max_time_msec := 20000
+const max_time_msec := 10000 # Update to 20 * 1000
 const FreezePlayer = preload("res://minigames/seattle_freeze/slide_player.gd")
 
 @export var generator: Node3D
@@ -26,6 +26,7 @@ var start_ticks: int
 ## Game state value, matched to GameState
 var state: int = 0
 var winner: int = -1
+var msec_remaining: int = 0
 
 
 func _ready() -> void:
@@ -35,6 +36,10 @@ func _ready() -> void:
 	reporter_audio.finished.connect(intro_anim)
 	change_gamestate.connect(cam.set_new_offset)
 	set_state(GameState.INSTRUCTIONS)
+
+
+func _process(delta: float) -> void:
+	_update_mmsec_remaining()
 
 
 func set_state(new_state: int) -> void:
@@ -49,7 +54,7 @@ func set_state(new_state: int) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if state != GameState.INSTRUCTIONS:
+	if not state in [GameState.INSTRUCTIONS, GameState.ENDED]:
 		return
 	var do_continue: bool = event.is_action("esc") \
 							or event.is_action("p1_action1") \
@@ -57,7 +62,11 @@ func _unhandled_input(event: InputEvent) -> void:
 							or event.is_action("p1_action2") \
 							or event.is_action("p2_action2")
 	if do_continue:
-		intro_anim()
+		if state == GameState.INSTRUCTIONS:
+			intro_anim()
+		else:
+			# Return to menu
+			Global.loadNewScene()
 
 
 func populate_players() -> void:
@@ -102,7 +111,28 @@ func end_game(winning_player:FreezePlayer) -> void:
 	set_state(GameState.ENDED)
 
 
-func check_remaining_time_msec() -> int:
+func _update_mmsec_remaining() -> void:
+	if state in [GameState.INSTRUCTIONS, GameState.INTRO_ANIM]:
+		return
 	var ticks = Time.get_ticks_msec()
 	var duration = ticks - start_ticks
-	return max_time_msec - duration
+	msec_remaining = clamp(max_time_msec - duration, 0, max_time_msec)
+	if msec_remaining == 0 and state == GameState.PLAYING:
+		var winner := get_leading_player()
+		end_game(winner)
+
+
+func get_leading_player() -> FreezePlayer:
+	var leading_player: FreezePlayer
+	var leading_z:float
+	for _player in players:
+		var _z:float = _player.global_position.z
+		if not is_instance_valid(leading_player) or leading_z < _z:
+			leading_player = _player
+			leading_z = _z
+			leading_z = _player.global_position.z
+	return leading_player
+
+
+func check_remaining_time_msec() -> int:
+	return msec_remaining

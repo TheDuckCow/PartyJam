@@ -18,7 +18,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if cam.global_position.y - self.global_position.y > 20:
+	if cam.global_position.y - self.global_position.y > 40:
 		queue_free()
 	velocity.y -= GRAVITY * delta
 	if dislodged:

@@ -1,6 +1,48 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8vqd0a4lakea"]
+[gd_scene load_steps=15 format=3 uid="uid://c8vqd0a4lakea"]
 
+[ext_resource type="FontFile" uid="uid://ifmvo13f1dn6" path="res://minigames/seattle_freeze/ui/GillSans.ttc" id="1_0ak42"]
 [ext_resource type="Script" uid="uid://b07lllfe3e7b3" path="res://minigames/seattle_freeze/freeze_hud.gd" id="1_18mwc"]
+[ext_resource type="Shader" uid="uid://b6nap4g05spo8" path="res://minigames/seattle_freeze/ui/label_scroll.tres" id="2_v2f2m"]
+[ext_resource type="Script" uid="uid://dfq66p3dw2q3j" path="res://minigames/seattle_freeze/label_scroll.gd" id="3_26u73"]
+
+[sub_resource type="Theme" id="Theme_o5mg3"]
+Label/fonts/font = ExtResource("1_0ak42")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ak42"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_r0t3h"]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("1_0ak42")
+Button/styles/normal = SubResource("StyleBoxFlat_0ak42")
+
+[sub_resource type="Animation" id="Animation_v2f2m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Margin:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BreakingNews:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_18mwc"]
 resource_name = "being_minigame"
@@ -8,7 +50,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control:modulate")
+tracks/0/path = NodePath("Margin:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -18,26 +60,51 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_v2f2m"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_0ak42"]
+resource_name = "endgame"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control:modulate")
+tracks/0/path = NodePath("Margin:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BreakingNews:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0682792, 0.213373, 0.303239, 0.40355),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v2f2m"]
 _data = {
 &"RESET": SubResource("Animation_v2f2m"),
-&"being_minigame": SubResource("Animation_18mwc")
+&"being_minigame": SubResource("Animation_18mwc"),
+&"endgame": SubResource("Animation_0ak42")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_26u73"]
+shader = ExtResource("2_v2f2m")
+shader_parameter/TextWidth = 2185.0
+
+[sub_resource type="Gradient" id="Gradient_26u73"]
+colors = PackedColorArray(0.0194374, 0.012657, 0.214018, 1, 0.0605872, 0.0422209, 0.380383, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0ak42"]
+gradient = SubResource("Gradient_26u73")
+fill_from = Vector2(0, 0.00213675)
+fill_to = Vector2(0, 1)
 
 [node name="FreezeHUD" type="Control" node_paths=PackedStringArray("time_remaining")]
 layout_mode = 3
@@ -47,10 +114,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = SubResource("Theme_o5mg3")
 script = ExtResource("1_18mwc")
-time_remaining = NodePath("Control/Control/time_remaining")
+time_remaining = NodePath("Margin/Control/time_remaining")
 
-[node name="Control" type="Control" parent="."]
+[node name="Margin" type="Control" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchor_left = 0.01
@@ -64,14 +132,14 @@ offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Control" type="Control" parent="Control"]
+[node name="Control" type="Control" parent="Margin"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 1
 anchor_left = 0.7
 anchor_right = 1.0
 grow_horizontal = 2
 
-[node name="ColorRect" type="ColorRect" parent="Control/Control"]
+[node name="ColorRect" type="ColorRect" parent="Margin/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -80,7 +148,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.854902, 0.0470588, 0.227451, 1)
 
-[node name="time_remaining" type="Label" parent="Control/Control"]
+[node name="time_remaining" type="Label" parent="Margin/Control"]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 1
 anchors_preset = -1
@@ -96,6 +164,7 @@ text = "Coverage ending in  0.00"
 
 [node name="BreakingNews" type="Control" parent="."]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -141,6 +210,11 @@ theme_override_font_sizes/font_size = 40
 text = "PLAYER # WINS"
 horizontal_alignment = 1
 
+[node name="Button" type="Button" parent="BreakingNews/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_r0t3h")
+text = "Press to conitinue"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_v2f2m")
@@ -158,30 +232,44 @@ grow_vertical = 0
 
 [node name="news_banner" type="Control" parent="news_banner_parent"]
 layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="news_banner_parent/news_banner"]
+[node name="VBoxContainer" type="VBoxContainer" parent="news_banner_parent/news_banner"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.854902, 0.0470588, 0.227451, 1)
 
-[node name="Label" type="Label" parent="news_banner_parent/news_banner"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Label" type="Label" parent="news_banner_parent/news_banner/VBoxContainer"]
+material = SubResource("ShaderMaterial_26u73")
+layout_mode = 2
+theme_override_colors/font_color = Color(0.991164, 0.991164, 0.991164, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
-text = "ONE TWO THREE FOUR FIVE SIX SEVEN EIGHT NINE TEN ELEVENT TWELVE THIRTEEN ONE TWO THREE FOUR FIVE SIX SEVEN EIGHT NINE TEN ELEVENT TWELVE THIRTEEN ONE TWO THREE FOUR FIVE SIX SEVEN EIGHT NINE TEN ELEVENT TWELVE THIRTEEN"
+text = "Seattle residents slide down icy hills amid historic low temperatures and lack of knowing what else to do. Live from Queen Anne. "
 vertical_alignment = 1
 uppercase = true
+script = ExtResource("3_26u73")
+
+[node name="TextureRect" type="TextureRect" parent="news_banner_parent/news_banner/VBoxContainer/Label"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_0ak42")
+
+[node name="ColorRect" type="ColorRect" parent="news_banner_parent/news_banner/VBoxContainer"]
+custom_minimum_size = Vector2(0, 7)
+layout_mode = 2
+
+[connection signal="pressed" from="BreakingNews/VBoxContainer/Button" to="." method="_on_continue_pressed"]

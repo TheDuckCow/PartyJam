@@ -9,4 +9,4 @@ func _on_body_entered(body: Node3D) -> void:
 		return
 	#var generator = get_parent().get_parent()
 	var manager:FreezeManager = get_node("../../../")
-	manager.end_game(body)
+	#manager.end_game(body)

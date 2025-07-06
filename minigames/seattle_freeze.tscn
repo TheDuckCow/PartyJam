@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dqvpcqhomdmot"]
+[gd_scene load_steps=23 format=3 uid="uid://dqvpcqhomdmot"]
 
 [ext_resource type="Script" uid="uid://g276qs6imuml" path="res://minigames/seattle_freeze/seattle_freeze_manager.gd" id="1_0en57"]
 [ext_resource type="Script" uid="uid://ny04ke47jr4e" path="res://minigames/seattle_freeze/slide_generator.gd" id="1_bv0cb"]
@@ -11,7 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://bf2ich3nqtr0o" path="res://minigames/seattle_freeze/textures/seattle_bg_print.jpg" id="5_mrdqw"]
 [ext_resource type="Script" uid="uid://d36104e8atw34" path="res://minigames/seattle_freeze/vparent.gd" id="6_0t1rq"]
 [ext_resource type="AudioStream" uid="uid://cp8y8fxwnb07a" path="res://minigames/seattle_freeze/audio/reporter_audio.wav" id="7_i5yrn"]
-[ext_resource type="Texture2D" uid="uid://dahso807yjtne" path="res://minigames/seattle_freeze/textures/reporter_render_01_edit.png" id="9_mh45c"]
+[ext_resource type="Texture2D" uid="uid://c53htfsm1r0ci" path="res://minigames/seattle_freeze/textures/reporter_edited_frames.png" id="12_1jhqt"]
+[ext_resource type="Script" uid="uid://bnndxuxtdlycl" path="res://minigames/seattle_freeze/sprite_randomizer.gd" id="13_6nhq1"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_mfkky"]
 size = Vector2(210, 120)
@@ -363,11 +364,13 @@ surface_material_override/0 = SubResource("StandardMaterial3D_mrdqw")
 
 [node name="far" type="MeshInstance3D" parent="Camera3D"]
 transform = Transform3D(0.00102868, 0.900423, -0.435014, -0.92909, -0.160031, -0.333441, -0.369854, 0.40451, 0.836409, -9.27427, 4.99802, -16.3478)
+visible = false
 mesh = SubResource("PlaneMesh_1jhqt")
 surface_material_override/0 = SubResource("StandardMaterial3D_6nhq1")
 
 [node name="close" type="MeshInstance3D" parent="Camera3D"]
 transform = Transform3D(0.00102868, 0.900424, -0.435014, -0.92909, -0.160031, -0.333441, -0.369854, 0.40451, 0.836409, 10.5144, 0.922099, -7.54593)
+visible = false
 mesh = SubResource("PlaneMesh_1jhqt")
 surface_material_override/0 = SubResource("StandardMaterial3D_6nhq1")
 
@@ -398,7 +401,7 @@ transform = Transform3D(0.966877, -0.0188357, 0.254547, -0.255243, -0.0713509, 0
 environment = SubResource("Environment_0en57")
 
 [node name="backplate" type="MeshInstance3D" parent="." node_paths=PackedStringArray("vparent")]
-transform = Transform3D(-0.000504067, -0.0008505, 0.426999, -0.00748099, 0.445912, 0.000805347, -0.426935, -0.00781251, -0.000518255, -104.401, -18.5288, 18.0221)
+transform = Transform3D(-0.000504069, -0.000850499, 0.426999, -0.00748099, 0.445912, 0.000805346, -0.426936, -0.00781249, -0.000518255, -104.401, -18.5288, 18.0221)
 visible = false
 mesh = SubResource("PlaneMesh_mfkky")
 surface_material_override/0 = SubResource("StandardMaterial3D_mrdqw")
@@ -415,4 +418,7 @@ libraries = {
 
 [node name="Reporter" type="Sprite3D" parent="."]
 transform = Transform3D(-8.74228e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.74228e-09, 5.05723, 0.907983, -1.49249)
-texture = ExtResource("9_mh45c")
+texture = ExtResource("12_1jhqt")
+hframes = 2
+vframes = 2
+script = ExtResource("13_6nhq1")

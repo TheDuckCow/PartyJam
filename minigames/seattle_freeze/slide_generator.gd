@@ -6,7 +6,7 @@ const IntersectionEnd = preload("res://minigames/seattle_freeze/segments/interse
 const FreezePlayer = preload("res://minigames/seattle_freeze/slide_player.gd")
 
 const Z_MARGIN:float = 20
-const Z_MARGIN_DESPAWN:float = 40
+const Z_MARGIN_DESPAWN:float = 60
 
 
 @export var prefabs: Array[PackedScene] = [Basic]
