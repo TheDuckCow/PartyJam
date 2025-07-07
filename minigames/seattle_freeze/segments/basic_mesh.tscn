@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://6l1eer74qjf7"]
+
+[ext_resource type="PackedScene" uid="uid://cu3llbpws8pab" path="res://minigames/seattle_freeze/segments/Basic.glb" id="1_ngap2"]
+[ext_resource type="Texture2D" uid="uid://dk5otgy0jn7dr" path="res://minigames/seattle_freeze/textures/asphault_newsprint.jpg" id="2_rxe1s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r7qex"]
+albedo_color = Color(0.246588, 0.246588, 0.246588, 1)
+albedo_texture = ExtResource("2_rxe1s")
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rxe1s"]
+albedo_color = Color(0.981795, 0.995204, 0.988274, 1)
+albedo_texture = ExtResource("2_rxe1s")
+uv1_world_triplanar = true
+
+[node name="Basic" instance=ExtResource("1_ngap2")]
+
+[node name="road2" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_r7qex")
+
+[node name="side" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rxe1s")
+
+[node name="house_01" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rxe1s")
+surface_material_override/1 = SubResource("StandardMaterial3D_r7qex")

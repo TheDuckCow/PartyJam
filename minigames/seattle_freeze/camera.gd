@@ -15,14 +15,14 @@ func _ready() -> void:
 
 func set_new_offset(new_state: int) -> void:
 	if new_state == FreezeManager.GameState.PLAYING:
-		print("Offset assigned during playing state")
+		#print("Offset assigned during playing state")
 		var players: Array[FreezePlayer] = get_parent().players
 		var player_midpoint = get_player_midpoint(players)
 		
 		# Then, identify the offset to give such that this xz player midpoint
 		# resutls in this current transform.
 		offset = global_position - player_midpoint
-		print("Offset: ", offset)
+		#print("Offset: ", offset)
 		playing = true
 	elif new_state == FreezeManager.GameState.ENDED:
 		playing = true

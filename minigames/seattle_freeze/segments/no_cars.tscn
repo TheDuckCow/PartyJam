@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://th2ektlslmar"]
+[gd_scene load_steps=8 format=3 uid="uid://th2ektlslmar"]
 
 [ext_resource type="Material" uid="uid://duhfc6bve53da" path="res://minigames/seattle_freeze/segments/road_mat.tres" id="1_7gc4o"]
+[ext_resource type="PackedScene" uid="uid://6l1eer74qjf7" path="res://minigames/seattle_freeze/segments/basic_mesh.tscn" id="2_55ful"]
 [ext_resource type="Texture2D" uid="uid://4er8qngt0vt6" path="res://minigames/seattle_freeze/textures/snow_decal.png" id="2_bchsg"]
 [ext_resource type="PackedScene" uid="uid://ctmrcbdsj8yxv" path="res://minigames/seattle_freeze/objects/suv.tscn" id="3_7gc4o"]
 
@@ -47,6 +48,7 @@ metadata/_edit_lock_ = true
 
 [node name="road" type="CSGPolygon3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.019614, 4.76837e-07, 0.0141745)
+visible = false
 material_override = ExtResource("1_7gc4o")
 calculate_tangents = false
 polygon = PackedVector2Array(4, 0, 5, -0.5, -5, -0.5, -4, 0)
@@ -61,6 +63,8 @@ path_local = true
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
+
+[node name="Basic" parent="." instance=ExtResource("2_55ful")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.9253, 0, 0, 0, 1.88985, 0.36776, 0, -0.36776, 1.88985, 2.25378, -0.646952, -3.58762)

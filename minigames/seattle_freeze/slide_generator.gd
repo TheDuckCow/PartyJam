@@ -2,7 +2,6 @@ extends Node3D
 
 const Basic = preload("res://minigames/seattle_freeze/segments/basic.tscn")
 const Intersection = preload("res://minigames/seattle_freeze/segments/intersection.tscn")
-const IntersectionEnd = preload("res://minigames/seattle_freeze/segments/intersection_end.tscn")
 const FreezePlayer = preload("res://minigames/seattle_freeze/slide_player.gd")
 
 const Z_MARGIN:float = 20
@@ -123,11 +122,7 @@ func add_segment() -> void:
 	
 	var to_spawn:PackedScene
 	if segs_added > 1 and segs_added % intersection_freq == 0:
-		#check if game should end now
-		if get_parent().check_remaining_time_msec() < 0:
-			to_spawn = IntersectionEnd
-		else:
-			to_spawn = Intersection
+		to_spawn = Intersection
 	else:
 		to_spawn = prefabs[randi() % prefabs.size()]
 	

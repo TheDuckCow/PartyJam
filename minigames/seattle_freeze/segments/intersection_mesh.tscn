@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://0f7m3aa744nu"]
+
+[ext_resource type="PackedScene" uid="uid://b02gkpkedqas8" path="res://minigames/seattle_freeze/segments/Intersection.glb" id="1_fc5hw"]
+[ext_resource type="Texture2D" uid="uid://dk5otgy0jn7dr" path="res://minigames/seattle_freeze/textures/asphault_newsprint.jpg" id="2_xtfjf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ycap6"]
+albedo_color = Color(0.246588, 0.246588, 0.246588, 1)
+albedo_texture = ExtResource("2_xtfjf")
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gpiot"]
+albedo_color = Color(0.981795, 0.995204, 0.988274, 1)
+albedo_texture = ExtResource("2_xtfjf")
+uv1_world_triplanar = true
+
+[node name="Intersection" instance=ExtResource("1_fc5hw")]
+
+[node name="road2_001" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ycap6")
+surface_material_override/1 = SubResource("StandardMaterial3D_gpiot")
