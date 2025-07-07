@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+signal on_collide
+
 const FreezeManager = preload("res://minigames/seattle_freeze/seattle_freeze_manager.gd")
 const FreezePlayer = preload("res://minigames/seattle_freeze/slide_player.gd")
 
@@ -14,12 +16,20 @@ var input_slower: String
 var cam: Camera3D
 
 func _ready() -> void:
+	# Avoid being queued free with segments
+	#reparent(get_parent().get_parent(), true)
+	# TODO: actually reparent this to somewhere
+	# that can't be despawend.
 	cam = get_viewport().get_camera_3d()
+	
+	if randf() > 0.5:
+		self.rotate_y(PI)
 
 
 func _physics_process(delta: float) -> void:
-	if cam.global_position.y - self.global_position.y > 40:
-		queue_free()
+	if cam.global_position.y - self.global_position.y > 70:
+		#queue_free()
+		pass
 	velocity.y -= GRAVITY * delta
 	if dislodged:
 		velocity.z -= delta * 5
@@ -48,6 +58,7 @@ func _on_body_entered(body: Node3D) -> void:
 	
 	if not dislodged:
 		dislodged = true
+		on_collide.emit()
 		self.velocity = body.velocity
 		# compare the horizontal velocity, add that some?
 		body.velocity = Vector3.ZERO

@@ -102,7 +102,6 @@ void vertex() {
 
 }
 "
-graph_offset = Vector2(-400.806, 131.468)
 mode = 1
 flags/light_only = false
 preview_params/TextWidth = "2000.0"

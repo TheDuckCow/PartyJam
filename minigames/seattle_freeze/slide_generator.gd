@@ -7,10 +7,11 @@ const FreezePlayer = preload("res://minigames/seattle_freeze/slide_player.gd")
 
 const Z_MARGIN:float = 20
 const Z_MARGIN_DESPAWN:float = 60
-
+const META_NAME = "Obstacle"
 
 @export var prefabs: Array[PackedScene] = [Basic]
 @export var debug: bool = false
+@export var obstacle_parent: Node3D
 
 var players: Array = []
 # First vector is the minimum z value (stored in x), with cooresponding y height there
@@ -108,6 +109,7 @@ func add_first_segment() -> void:
 	segs_added += 1
 	var seg = Intersection.instantiate()
 	add_child(seg)
+	reparent_obstacles.call_deferred(seg)
 	# Set any animation timers etc..?
 	# signal the scene being ready..?
 	seg_bounds = get_bounds()
@@ -131,6 +133,7 @@ func add_segment() -> void:
 	
 	var instance = to_spawn.instantiate()
 	add_child(instance)
+	reparent_obstacles.call_deferred(instance)
 	# now placement of this child based on prior child
 	
 	var prior_bounds := get_curve_bounds(prior_seg)
@@ -157,4 +160,13 @@ func add_segment() -> void:
 		print("\tfinal output: ", instance.global_position)
 	
 	seg_bounds = get_bounds()
-	
+
+
+## Reparent dynamic objects to avoid removal with source segment since they likely moved
+func reparent_obstacles(segment:Node3D) -> void:
+	for _ch in segment.get_children():
+		if _ch is CharacterBody3D or _ch is RigidBody3D:
+			#var _trans = _ch.global_transform
+			_ch.reparent(obstacle_parent, true)
+			#_ch.global_transform = _trans
+			var res = _ch.on_collide.connect(obstacle_parent.play_carbump)

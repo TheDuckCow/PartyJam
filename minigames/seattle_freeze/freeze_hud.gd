@@ -13,6 +13,7 @@ const FreezeManager = preload("res://minigames/seattle_freeze/seattle_freeze_man
 func _ready() -> void:
 	manager.change_gamestate.connect(_on_state_change)
 	win_screens.visible = false
+	anim_player.play("intro")
 
 
 func _process(_delta: float) -> void:
@@ -22,7 +23,6 @@ func _process(_delta: float) -> void:
 
 
 func _on_state_change(new_state) -> void:
-	print("Handling state change in HUD")
 	if new_state == FreezeManager.GameState.PLAYING:
 		anim_player.play("being_minigame")
 	elif new_state == FreezeManager.GameState.ENDED:

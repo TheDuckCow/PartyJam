@@ -1,15 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctmrcbdsj8yxv"]
+[gd_scene load_steps=9 format=3 uid="uid://ctmrcbdsj8yxv"]
 
 [ext_resource type="Script" uid="uid://dk80vbli4acm6" path="res://minigames/seattle_freeze/objects/dynamic_body.gd" id="1_rgtl8"]
+[ext_resource type="Texture2D" uid="uid://cs075gq2oquk6" path="res://minigames/seattle_freeze/objects/suv-frames.png" id="2_c2xsc"]
+[ext_resource type="Script" uid="uid://dkrfh74wju0j8" path="res://minigames/seattle_freeze/objects/sprint-imposter.gd" id="3_xlx61"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uwlbe"]
-size = Vector3(4, 1, 1.5)
+size = Vector3(2.55273, 1, 1.28223)
 
 [sub_resource type="BoxMesh" id="BoxMesh_uwlbe"]
-size = Vector3(4, 1, 1.5)
+size = Vector3(2.8, 1, 1.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xlx61"]
+blend_mode = 1
+albedo_color = Color(3.36915e-06, 0.73139, 0.563893, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rgtl8"]
-size = Vector3(4.1, 1.1, 1.5)
+size = Vector3(3.54514, 1.1, 1.80054)
 
 [sub_resource type="PrismMesh" id="PrismMesh_rgtl8"]
 
@@ -20,16 +26,20 @@ collision_priority = 0.1
 script = ExtResource("1_rgtl8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0792236, 0, 0)
 shape = SubResource("BoxShape3D_uwlbe")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("BoxMesh_uwlbe")
+surface_material_override/0 = SubResource("StandardMaterial3D_xlx61")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.108997, 0, 0)
 shape = SubResource("BoxShape3D_rgtl8")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
@@ -39,6 +49,15 @@ debug_shape_thickness = 5
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.14991, 0.425777, 0)
+visible = false
 mesh = SubResource("PrismMesh_rgtl8")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30236, 0)
+alpha_cut = 1
+texture = ExtResource("2_c2xsc")
+hframes = 2
+vframes = 4
+script = ExtResource("3_xlx61")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]

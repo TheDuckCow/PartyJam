@@ -7,7 +7,6 @@ var init_offset := Vector3.ZERO
 
 func _ready() -> void:
 	init_offset = global_position - vparent.global_position
-	print("Init offset: ", init_offset)
 
 func _process(_delta: float) -> void:
 	global_position = vparent.global_position + init_offset

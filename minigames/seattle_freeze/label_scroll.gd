@@ -14,5 +14,5 @@ func _on_resize() -> void:
 	# Original shader mostly from:
 	# https://forum.godotengine.org/t/horizontally-scrolling-dynamicfont-shader/13446/2
 	var size:Vector2 = get_viewport().get_visible_rect().size
-	print("Window did resize %s" % size.x)
+	#print("Window did resize %s" % size.x)
 	#self.material.set_shader_parameter("TextWidth", size.x)

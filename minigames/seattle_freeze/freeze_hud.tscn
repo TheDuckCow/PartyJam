@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c8vqd0a4lakea"]
+[gd_scene load_steps=18 format=3 uid="uid://c8vqd0a4lakea"]
 
 [ext_resource type="FontFile" uid="uid://ifmvo13f1dn6" path="res://minigames/seattle_freeze/ui/GillSans.ttc" id="1_0ak42"]
 [ext_resource type="Script" uid="uid://b07lllfe3e7b3" path="res://minigames/seattle_freeze/freeze_hud.gd" id="1_18mwc"]
@@ -8,21 +8,12 @@
 [sub_resource type="Theme" id="Theme_o5mg3"]
 Label/fonts/font = ExtResource("1_0ak42")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ak42"]
-bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="Theme" id="Theme_r0t3h"]
-Button/colors/font_color = Color(0, 0, 0, 1)
-Button/font_sizes/font_size = 30
-Button/fonts/font = ExtResource("1_0ak42")
-Button/styles/normal = SubResource("StyleBoxFlat_0ak42")
-
 [sub_resource type="Animation" id="Animation_v2f2m"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Margin:modulate")
+tracks/0/path = NodePath("timer_banner:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -43,21 +34,165 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("intro_anim/Control/white_curve_edge:anchor_right")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.425]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("intro_anim/Control/red:anchor_right")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.331]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("intro_anim/Control/headline:visible_ratio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("intro_anim/Control/headline:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("intro_anim/Instructions:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("intro_anim/Instructions:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_18mwc"]
 resource_name = "being_minigame"
-length = 0.2
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Margin:modulate")
+tracks/0/path = NodePath("timer_banner:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.233333, 0.466667),
+"transitions": PackedFloat32Array(0.615572, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("intro_anim/Control/white_curve_edge:anchor_right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0623359, 0.233333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 2.2974, 1),
+"update": 0,
+"values": [0.425, 0.425, 0.47, -0.1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("intro_anim/Control/red:anchor_right")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.4),
+"transitions": PackedFloat32Array(1, 3.03143, 1),
+"update": 0,
+"values": [0.331, 0.35, -0.01]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("intro_anim/Control/headline:visible_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.32083, 0.397463),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 1.0, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("intro_anim/Control/headline:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("intro_anim/Instructions:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.17295),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("intro_anim/Instructions:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_0ak42"]
@@ -65,7 +200,7 @@ resource_name = "endgame"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Margin:modulate")
+tracks/0/path = NodePath("timer_banner:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -81,18 +216,101 @@ tracks/1/path = NodePath("BreakingNews:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0682792, 0.213373, 0.303239, 0.40355),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0682792, 0.213373),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_o5mg3"]
+resource_name = "intro"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("intro_anim/Control/white_curve_edge:anchor_right")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.366667, 0.6),
+"transitions": PackedFloat32Array(0.466516, 2.2974, 1),
+"update": 0,
+"values": [-0.05, 0.45, 0.425]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("intro_anim/Control/red:anchor_right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.166667, 0.566667),
+"transitions": PackedFloat32Array(0.267943, 2.82843),
+"update": 0,
+"values": [-0.05, 0.331]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("intro_anim/Control/headline:visible_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0955054, 0.190439, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("intro_anim/Instructions:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.514239, 0.869363),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("intro_anim/Instructions:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.566667, 0.86821),
+"transitions": PackedFloat32Array(0.435275, 1),
+"update": 0,
+"values": [Vector2(1, 0.8), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v2f2m"]
 _data = {
 &"RESET": SubResource("Animation_v2f2m"),
 &"being_minigame": SubResource("Animation_18mwc"),
-&"endgame": SubResource("Animation_0ak42")
+&"endgame": SubResource("Animation_0ak42"),
+&"intro": SubResource("Animation_o5mg3")
 }
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5mg3"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_right = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r0t3h"]
+bg_color = Color(0.0196078, 0.0117647, 0.215686, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ak42"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_r0t3h"]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("1_0ak42")
+Button/styles/normal = SubResource("StyleBoxFlat_0ak42")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_26u73"]
 shader = ExtResource("2_v2f2m")
@@ -113,12 +331,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 theme = SubResource("Theme_o5mg3")
 script = ExtResource("1_18mwc")
-time_remaining = NodePath("Margin/Control/time_remaining")
+time_remaining = NodePath("timer_banner/game_timer/time_remaining")
 
-[node name="Margin" type="Control" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_v2f2m")
+}
+
+[node name="timer_banner" type="Control" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchor_left = 0.01
@@ -132,14 +354,14 @@ offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Control" type="Control" parent="Margin"]
+[node name="game_timer" type="Control" parent="timer_banner"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 1
 anchor_left = 0.7
 anchor_right = 1.0
 grow_horizontal = 2
 
-[node name="ColorRect" type="ColorRect" parent="Margin/Control"]
+[node name="ColorRect" type="ColorRect" parent="timer_banner/game_timer"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -148,7 +370,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.854902, 0.0470588, 0.227451, 1)
 
-[node name="time_remaining" type="Label" parent="Margin/Control"]
+[node name="time_remaining" type="Label" parent="timer_banner/game_timer"]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 1
 anchors_preset = -1
@@ -162,6 +384,90 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Coverage ending in  0.00"
 
+[node name="intro_anim" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="intro_anim"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="white_curve_edge" type="Panel" parent="intro_anim/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.2
+anchor_right = 0.425
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o5mg3")
+
+[node name="red" type="ColorRect" parent="intro_anim/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.1
+anchor_right = 0.331
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.854902, 0.0470588, 0.227451, 1)
+
+[node name="headline" type="Label" parent="intro_anim/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_0ak42")
+theme_override_font_sizes/font_size = 40
+text = "SEATTLE FREEZE"
+vertical_alignment = 1
+
+[node name="Instructions" type="Panel" parent="intro_anim"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_right = 1.0
+anchor_bottom = 0.672
+offset_top = 20.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r0t3h")
+
+[node name="Label" type="Label" parent="intro_anim/Instructions"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_right = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "INSTRUCTIONS
+
+• Race to bottom of hill
+• Win by being ahead at timer's end
+• P1: a/d to go slower/faster
+• P1: w/s to cross road
+• P2: left/right to go slower/faster
+• P2: up/down to cross road"
+vertical_alignment = 1
+
 [node name="BreakingNews" type="Control" parent="."]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
@@ -174,7 +480,9 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="BreakingNews"]
-custom_minimum_size = Vector2(0, 100)
+self_modulate = Color(1, 1, 1, 0.462745)
+z_index = -1
+custom_minimum_size = Vector2(0, 120)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -210,15 +518,22 @@ theme_override_font_sizes/font_size = 40
 text = "PLAYER # WINS"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="BreakingNews/VBoxContainer"]
+[node name="Button" type="Label" parent="BreakingNews/VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_r0t3h")
-text = "Press to conitinue"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Enter to conitinue"
+horizontal_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_v2f2m")
-}
+[node name="ColorRect" type="ColorRect" parent="BreakingNews/VBoxContainer/Button"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="news_banner_parent" type="Control" parent="."]
 custom_minimum_size = Vector2(0, 100)
@@ -259,7 +574,7 @@ uppercase = true
 script = ExtResource("3_26u73")
 
 [node name="TextureRect" type="TextureRect" parent="news_banner_parent/news_banner/VBoxContainer/Label"]
-z_index = -1
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -271,5 +586,3 @@ texture = SubResource("GradientTexture2D_0ak42")
 [node name="ColorRect" type="ColorRect" parent="news_banner_parent/news_banner/VBoxContainer"]
 custom_minimum_size = Vector2(0, 7)
 layout_mode = 2
-
-[connection signal="pressed" from="BreakingNews/VBoxContainer/Button" to="." method="_on_continue_pressed"]

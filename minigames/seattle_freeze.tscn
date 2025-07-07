@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dqvpcqhomdmot"]
+[gd_scene load_steps=29 format=3 uid="uid://dqvpcqhomdmot"]
 
 [ext_resource type="Script" uid="uid://g276qs6imuml" path="res://minigames/seattle_freeze/seattle_freeze_manager.gd" id="1_0en57"]
 [ext_resource type="Script" uid="uid://ny04ke47jr4e" path="res://minigames/seattle_freeze/slide_generator.gd" id="1_bv0cb"]
@@ -8,9 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://cccb078u7vver" path="res://minigames/seattle_freeze/segments/basic.tscn" id="3_nhsdk"]
 [ext_resource type="PackedScene" uid="uid://th2ektlslmar" path="res://minigames/seattle_freeze/segments/no_cars.tscn" id="4_1jhqt"]
 [ext_resource type="PackedScene" uid="uid://ci2fxybjwlu65" path="res://minigames/seattle_freeze/segments/intersection.tscn" id="4_5yobc"]
+[ext_resource type="Script" uid="uid://b3h1p6r0tx6rc" path="res://minigames/obstacles.gd" id="5_dq4gw"]
 [ext_resource type="Texture2D" uid="uid://bf2ich3nqtr0o" path="res://minigames/seattle_freeze/textures/seattle_bg_print.jpg" id="5_mrdqw"]
 [ext_resource type="Script" uid="uid://d36104e8atw34" path="res://minigames/seattle_freeze/vparent.gd" id="6_0t1rq"]
-[ext_resource type="AudioStream" uid="uid://cp8y8fxwnb07a" path="res://minigames/seattle_freeze/audio/reporter_audio.wav" id="7_i5yrn"]
+[ext_resource type="AudioStream" uid="uid://cp8y8fxwnb07a" path="res://minigames/seattle_freeze/audio/reporter_audio.wav" id="6_dq4gw"]
+[ext_resource type="AudioStream" uid="uid://dq0oufm08dk8" path="res://minigames/seattle_freeze/audio/carbump_01.mp3" id="6_ou1hx"]
+[ext_resource type="AudioStream" uid="uid://bm6wigdrjqvnk" path="res://minigames/seattle_freeze/audio/carbump_02.mp3" id="7_3a3cg"]
+[ext_resource type="AudioStream" uid="uid://b0hxppo4qkl6y" path="res://minigames/seattle_freeze/audio/carbump_03.mp3" id="8_owlok"]
+[ext_resource type="AudioStream" uid="uid://drua2qkyrhyoq" path="res://minigames/seattle_freeze/audio/carbump_04.mp3" id="9_k53hc"]
 [ext_resource type="Texture2D" uid="uid://c53htfsm1r0ci" path="res://minigames/seattle_freeze/textures/reporter_edited_frames.png" id="12_1jhqt"]
 [ext_resource type="Script" uid="uid://bnndxuxtdlycl" path="res://minigames/seattle_freeze/sprite_randomizer.gd" id="13_6nhq1"]
 
@@ -28,6 +33,15 @@ size = Vector2(20, 8)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6nhq1"]
 blend_mode = 3
 albedo_color = Color(0.372111, 1, 0.495145, 1)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ou1hx"]
+random_pitch = 1.5
+random_volume_offset_db = 0.2
+streams_count = 4
+stream_0/stream = ExtResource("6_ou1hx")
+stream_1/stream = ExtResource("7_3a3cg")
+stream_2/stream = ExtResource("8_owlok")
+stream_3/stream = ExtResource("9_k53hc")
 
 [sub_resource type="Curve3D" id="Curve3D_gg7nd"]
 _data = {
@@ -341,7 +355,7 @@ _data = {
 [node name="SeattleFreeze" type="Node3D" node_paths=PackedStringArray("generator", "reporter_audio", "anim_player", "cam", "far_plane", "close_plane")]
 script = ExtResource("1_0en57")
 generator = NodePath("SlideGenerator")
-reporter_audio = NodePath("AudioStreamPlayer")
+reporter_audio = NodePath("reproter_audio")
 anim_player = NodePath("AnimationPlayer")
 cam = NodePath("Camera3D")
 far_plane = NodePath("Camera3D/far")
@@ -374,9 +388,22 @@ visible = false
 mesh = SubResource("PlaneMesh_1jhqt")
 surface_material_override/0 = SubResource("StandardMaterial3D_6nhq1")
 
-[node name="SlideGenerator" type="Node3D" parent="."]
+[node name="Obstacles" type="Node3D" parent="." node_paths=PackedStringArray("bump_player")]
+script = ExtResource("5_dq4gw")
+bump_player = NodePath("../car_bumps")
+
+[node name="car_bumps" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_ou1hx")
+volume_db = -10.0
+max_polyphony = 3
+
+[node name="reproter_audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_dq4gw")
+
+[node name="SlideGenerator" type="Node3D" parent="." node_paths=PackedStringArray("obstacle_parent")]
 script = ExtResource("1_bv0cb")
 prefabs = Array[PackedScene]([ExtResource("3_nhsdk"), ExtResource("4_1jhqt")])
+obstacle_parent = NodePath("../Obstacles")
 
 [node name="BasicSegment2" parent="SlideGenerator" instance=ExtResource("4_1jhqt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 20)
@@ -401,15 +428,12 @@ transform = Transform3D(0.966877, -0.0188357, 0.254547, -0.255243, -0.0713509, 0
 environment = SubResource("Environment_0en57")
 
 [node name="backplate" type="MeshInstance3D" parent="." node_paths=PackedStringArray("vparent")]
-transform = Transform3D(-0.000504069, -0.000850499, 0.426999, -0.00748099, 0.445912, 0.000805346, -0.426936, -0.00781249, -0.000518255, -104.401, -18.5288, 18.0221)
+transform = Transform3D(-0.000504068, -0.000850499, 0.426999, -0.00748095, 0.445912, 0.000805346, -0.426935, -0.00781247, -0.000518255, -104.401, -18.5288, 18.0221)
 visible = false
 mesh = SubResource("PlaneMesh_mfkky")
 surface_material_override/0 = SubResource("StandardMaterial3D_mrdqw")
 script = ExtResource("6_0t1rq")
 vparent = NodePath("../Camera3D")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_i5yrn")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

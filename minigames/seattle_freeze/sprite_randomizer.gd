@@ -13,7 +13,6 @@ func _ready() -> void:
 	
 	
 func _timer_update() -> void:
-	print("Reproter timer update")
 	frame = randf_range(0, max_frames-1)
 	timer.wait_time = 0.3 + 0.2 * randf()
 	timer.start(timer.wait_time)

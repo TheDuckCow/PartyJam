@@ -3,6 +3,8 @@ extends Camera3D
 const FreezePlayer = preload("res://minigames/seattle_freeze/slide_player.gd")
 const FreezeManager = preload("res://minigames/seattle_freeze/seattle_freeze_manager.gd")
 
+@onready var backplate := $backplate_parent
+
 ## Offset to use from the actual midpoint, since there might be some tilt
 var offset: Vector3 = Vector3.ZERO
 var playing: bool = false
@@ -35,7 +37,10 @@ func _process(_delta: float) -> void:
 func set_camera_zy() -> void:
 	var players: Array[FreezePlayer] = get_parent().players
 	var player_midpoint = get_player_midpoint(players)
+	var init_globz = global_position.z
 	global_position = player_midpoint + offset
+	var zmove = global_position.z - init_globz
+	backplate.position.x += zmove * 0.05
 
 
 func get_player_midpoint(spatials: Array[FreezePlayer]) -> Vector3:
